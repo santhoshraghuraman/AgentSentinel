@@ -1,0 +1,396 @@
+{
+  "chrome_version": "153.0.8010.50",
+  "routes_tested": [
+    {
+      "route": "/",
+      "label": "Overview Dashboard",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/dashboard/01_initial_load.png"
+    },
+    {
+      "route": "/live",
+      "label": "Live Monitor",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/live/01_initial_load.png"
+    },
+    {
+      "route": "/trajectories",
+      "label": "Trajectories",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/trajectories/01_initial_load.png"
+    },
+    {
+      "route": "/agents",
+      "label": "Agents & Fleet",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/agents/01_initial_load.png"
+    },
+    {
+      "route": "/policies",
+      "label": "Governance Policies",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/policies/01_initial_load.png"
+    },
+    {
+      "route": "/policies",
+      "label": "Governance Policies",
+      "status": "FAIL",
+      "error": "locator.fill: Error: Cannot type text into input[type=number]\nCall log:\n\u001b[2m  - waiting for locator('input').nth(2)\u001b[22m\n\u001b[2m    - locator resolved to <input required=\"\" value=\"100\" type=\"number\" class=\"flex w-full rounded-md border border-input px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 h-8 text-xs font-mono bg-slate-50/50\"/>\u001b[22m\n\u001b[2m    - fill(\"Walkthrough test policy for block verification\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n"
+    },
+    {
+      "route": "/tasks",
+      "label": "Task Contracts",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/tasks/01_initial_load.png"
+    },
+    {
+      "route": "/audit",
+      "label": "Audit Ledger",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/audit/01_initial_load.png"
+    },
+    {
+      "route": "/decision-explorer",
+      "label": "Decision Explorer",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/decision-explorer/01_initial_load.png"
+    },
+    {
+      "route": "/decision-explorer",
+      "label": "Decision Explorer",
+      "status": "FAIL",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"Export JSON Artifact\")').first()\u001b[22m\n\u001b[2m    - locator resolved to <button disabled class=\"inline-flex items-center justify-center whitespace-nowrap rounded-md ring-offset-background motion-safe:transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border hover:bg-accent hover:text-accent-foreground px-4 py-2 h-9 text-xs font-semibold bg-white border-slate-200 text-slate-700 shadow-xs\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    55 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+    },
+    {
+      "route": "/datasets",
+      "label": "Research Datasets",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/datasets/01_initial_load.png"
+    },
+    {
+      "route": "/evaluation",
+      "label": "Model Evaluation",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/evaluation/01_initial_load.png"
+    },
+    {
+      "route": "/reports",
+      "label": "Compliance Reports",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/reports/01_initial_load.png"
+    },
+    {
+      "route": "/settings",
+      "label": "System Settings",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/settings/01_initial_load.png"
+    },
+    {
+      "route": "/system/diagnostics",
+      "label": "System Diagnostics",
+      "status": "PASS",
+      "initialShot": "reports/live_chrome_walkthrough/diagnostics/01_initial_load.png"
+    }
+  ],
+  "controls_tested": [
+    {
+      "route": "/",
+      "control": "Time Filter (15m)",
+      "action": "CLICK",
+      "expected": "Time range active",
+      "actual": "Filter selected",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/dashboard/filter_15m.png"
+    },
+    {
+      "route": "/",
+      "control": "Time Filter (1h)",
+      "action": "CLICK",
+      "expected": "Time range active",
+      "actual": "Filter selected",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/dashboard/filter_1h.png"
+    },
+    {
+      "route": "/",
+      "control": "Time Filter (24h)",
+      "action": "CLICK",
+      "expected": "Time range active",
+      "actual": "Filter selected",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/dashboard/filter_24h.png"
+    },
+    {
+      "route": "/",
+      "control": "Time Filter (Live)",
+      "action": "CLICK",
+      "expected": "Time range active",
+      "actual": "Filter selected",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/dashboard/filter_live.png"
+    },
+    {
+      "route": "/",
+      "control": "Sync Pipeline Button",
+      "action": "CLICK",
+      "expected": "Metrics refreshed from API",
+      "actual": "Pipeline synced",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/dashboard/after_sync.png"
+    },
+    {
+      "route": "/",
+      "control": "Export Audit Button",
+      "action": "CLICK",
+      "expected": "Export triggered",
+      "actual": "Export modal/action fired",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/dashboard/export_audit.png"
+    },
+    {
+      "route": "/live",
+      "control": "Pause Stream Button",
+      "action": "CLICK",
+      "expected": "Stream stream paused",
+      "actual": "Stream paused",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/live/after_pause.png"
+    },
+    {
+      "route": "/live",
+      "control": "High-Risk Only Filter",
+      "action": "CLICK",
+      "expected": "Stream filtered for risk",
+      "actual": "Filter applied",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/live/after_high_risk_filter.png"
+    },
+    {
+      "route": "/live",
+      "control": "Clear Buffer Button",
+      "action": "CLICK",
+      "expected": "Buffer cleared",
+      "actual": "Buffer reset",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/live/after_clear_buffer.png"
+    },
+    {
+      "route": "/trajectories",
+      "control": "Session Dropdown",
+      "action": "SELECT",
+      "expected": "Session trajectory loaded",
+      "actual": "Session changed",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/trajectories/session_selected.png"
+    },
+    {
+      "route": "/agents",
+      "control": "Agent Search",
+      "action": "FILL",
+      "expected": "Agents list filtered",
+      "actual": "List updated",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/agents/agent_search.png"
+    },
+    {
+      "route": "/agents",
+      "control": "Status Filter Dropdown",
+      "action": "SELECT",
+      "expected": "Filter active",
+      "actual": "Option selected",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/agents/status_filter.png"
+    },
+    {
+      "route": "/tasks",
+      "control": "Task Context Form",
+      "action": "FILL",
+      "expected": "Task grants & denies populated",
+      "actual": "Form filled",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/tasks/form_filled.png"
+    },
+    {
+      "route": "/tasks",
+      "control": "Register Task Context Button",
+      "action": "CLICK",
+      "expected": "Task created in DB",
+      "actual": "Task registered",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/tasks/task_registered.png"
+    },
+    {
+      "route": "/audit",
+      "control": "Audit Search Input",
+      "action": "FILL",
+      "expected": "Audit records filtered",
+      "actual": "Search active",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/audit/audit_search.png"
+    },
+    {
+      "route": "/audit",
+      "control": "Decision Filter Dropdown",
+      "action": "SELECT",
+      "expected": "Filtered by decision",
+      "actual": "Option selected",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/audit/decision_filter.png"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "Select Event Dropdown",
+      "action": "SELECT",
+      "expected": "Feature breakdown & trace loaded",
+      "actual": "Event displayed",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/decision-explorer/event_details_loaded.png"
+    },
+    {
+      "route": "/datasets",
+      "control": "Datasets Explorer",
+      "action": "INSPECT",
+      "expected": "Benchmark corpus rendered",
+      "actual": "Corpus displayed",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/datasets/datasets_overview.png"
+    },
+    {
+      "route": "/evaluation",
+      "control": "Model Evaluation Selector",
+      "action": "SELECT",
+      "expected": "Confusion matrix and metrics loaded",
+      "actual": "Model evaluated",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/evaluation/model_metrics_view.png"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "System Diagnostics View",
+      "action": "INSPECT",
+      "expected": "Ollama, DB, Invariants HEALTHY",
+      "actual": "All systems green",
+      "result": "PASS",
+      "screenshot": "reports/live_chrome_walkthrough/diagnostics/health_matrix.png"
+    }
+  ],
+  "playground_scenarios": [
+    {
+      "scenario": "ALLOW",
+      "preset": "1. ALLOW (Benign)",
+      "expected_decision": "ALLOW",
+      "expected_state": "EXECUTED",
+      "duration_ms": 85609,
+      "decision_rendered": "ALLOW",
+      "state_rendered": "EXECUTED",
+      "status": "PASS",
+      "before_screenshot": "reports/live_chrome_walkthrough/playground/allow_01_before.png",
+      "result_screenshot": "reports/live_chrome_walkthrough/playground/allow_02_result.png"
+    },
+    {
+      "scenario": "ALERT",
+      "preset": "2. ALERT (Monitored)",
+      "expected_decision": "ALERT",
+      "expected_state": "EXECUTED",
+      "duration_ms": 33651,
+      "decision_rendered": "ALERT",
+      "state_rendered": "EXECUTED",
+      "status": "PASS",
+      "before_screenshot": "reports/live_chrome_walkthrough/playground/alert_01_before.png",
+      "result_screenshot": "reports/live_chrome_walkthrough/playground/alert_02_result.png"
+    },
+    {
+      "scenario": "BLOCK",
+      "preset": "3. BLOCK (Attack)",
+      "expected_decision": "BLOCK",
+      "expected_state": "BLOCKED",
+      "duration_ms": 0,
+      "decision_rendered": null,
+      "state_rendered": null,
+      "status": "FAIL",
+      "before_screenshot": "reports/live_chrome_walkthrough/playground/block_01_before.png",
+      "result_screenshot": "reports/live_chrome_walkthrough/playground/block_error.png",
+      "error": "page.waitForResponse: Timeout 90000ms exceeded while waiting for event \"response\""
+    },
+    {
+      "scenario": "FAULT",
+      "preset": "4. FAULT RECOVERY",
+      "expected_decision": "ALLOW",
+      "expected_state": "EXECUTION_FAILED",
+      "duration_ms": 0,
+      "decision_rendered": null,
+      "state_rendered": null,
+      "status": "FAIL",
+      "before_screenshot": "reports/live_chrome_walkthrough/playground/fault_01_before.png",
+      "result_screenshot": "reports/live_chrome_walkthrough/playground/fault_error.png",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"Execute Agent Task\")').first()\u001b[22m\n"
+    }
+  ],
+  "console_errors": [],
+  "page_errors": [],
+  "network_errors": [],
+  "start_time": "2026-09-20T08:18:48.518Z",
+  "end_time": "2026-09-20T08:24:27.811Z",
+  "db_records": [
+    {
+      "session_id": "session-alert-3304",
+      "sequence_number": 1,
+      "decision": "alert",
+      "execution_state": "executed"
+    },
+    {
+      "session_id": "session-allow-8577",
+      "sequence_number": 1,
+      "decision": "allow",
+      "execution_state": "executed"
+    },
+    {
+      "session_id": "session-allow-3083",
+      "sequence_number": 1,
+      "decision": "allow",
+      "execution_state": "executed"
+    },
+    {
+      "session_id": "test-session",
+      "sequence_number": 1,
+      "decision": "allow",
+      "execution_state": "executed"
+    },
+    {
+      "session_id": "test-session",
+      "sequence_number": 1,
+      "decision": "allow",
+      "execution_state": "executed"
+    },
+    {
+      "session_id": "test-session",
+      "sequence_number": 1,
+      "decision": "allow",
+      "execution_state": "executed"
+    },
+    {
+      "session_id": "session-allow-9515",
+      "sequence_number": 1,
+      "decision": "allow",
+      "execution_state": "executed"
+    },
+    {
+      "session_id": "session-allow-1792",
+      "sequence_number": 1,
+      "decision": "allow",
+      "execution_state": "executed"
+    },
+    {
+      "session_id": "session-allow-5059",
+      "sequence_number": 1,
+      "decision": "allow",
+      "execution_state": "executed"
+    },
+    {
+      "session_id": "session-allow-8410",
+      "sequence_number": 1,
+      "decision": "allow",
+      "execution_state": "executed"
+    }
+  ]
+}

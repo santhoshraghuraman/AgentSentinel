@@ -1,0 +1,35 @@
+# Environments
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Databases
+*.db
+
+# Frontend
+ui/node_modules/
+ui/dist/
+ui/.env.local
+
+# Runtime & Sandbox Logs
+logs/*
+!logs/.gitkeep
+sandbox/*
+!sandbox/.gitkeep
+
+# IDEs and Tools
+.vscode/
+.idea/
+
+# Exclude temp testing artifacts but preserve standard datasets
+test-results/
+ui/playwright-report/
+
+# Large research/generated artifacts excluded from Git (kept on disk)
+# syfi_coding_trace.jsonl.gz: 96 MB observational research trace (runtime optional)
+# syfi_coding_trace.duckdb: 153 MB generated local analysis database
+# reports/final_live_chrome/trace.zip: 125 MB generated Playwright browser trace
+datasets/TraceLab/syfi_coding_trace.jsonl.gz
+datasets/TraceLab/syfi_coding_trace.duckdb
+reports/final_live_chrome/trace.zip

@@ -1,0 +1,26 @@
+flowchart LR
+    subgraph Data Sources
+        ATBench[(ATBench \n Labeled Traces)]
+        SyFI[(SyFI TraceLab \n Observational Data)]
+    end
+
+    subgraph Feature Engineering
+        Extractor[TrajectoryFeatureExtractor]
+        ATBench -->|Raw Trace JSON| Extractor
+        Extractor -->|1. Categorical Windows| F1(Feature Set)
+        Extractor -->|2. Temporal Transitions| F1
+        Extractor -->|3. Mutating Identifiers| F1
+        F1 -->|22-D Float Vector| Scaler[StandardScaler]
+    end
+
+    subgraph ML Pipeline
+        Scaler --> RF[RandomForestClassifier \n n=100, seed=42]
+        RF -->|Stratified 75/25 Split| Eval(Evaluation Metrics)
+        RF -->|Export| Artifact(risk_model.joblib)
+    end
+
+    subgraph Runtime Inference
+        Artifact --> M5[M5: Behavioral Risk]
+        LiveStream[Agent Telemetry] -->|Feature Extraction| M5
+        M5 --> Score(Risk Severity Score)
+    end

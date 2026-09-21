@@ -1,0 +1,5163 @@
+{
+  "chrome_version": "153.0.8010.12",
+  "routes": {
+    "/": "PASS",
+    "/live": "PASS",
+    "/trajectories": "PASS",
+    "/agents": "PASS",
+    "/playground": "PASS",
+    "/evaluation": "PASS",
+    "/datasets": "PASS",
+    "/reports": "PASS",
+    "/tasks": "PASS",
+    "/policies": "PASS",
+    "/settings": "PASS",
+    "/system/diagnostics": "PASS",
+    "/decision-explorer": "PASS",
+    "/audit": "PASS"
+  },
+  "all_routes_pass": true,
+  "console_errors": [],
+  "page_errors": [],
+  "network_errors": [],
+  "inventory": [
+    {
+      "route": "/",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Sync Pipeline",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Export Audit",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Export Audit",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "15m",
+          "type": "button",
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "1h",
+          "type": "button",
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "24h",
+          "type": "button",
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Live",
+          "type": "button",
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "Filter by tool or session...",
+          "type": "text",
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "View Full Audit Log",
+          "type": null,
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/live",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Pause Stream",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "High-Risk Only",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Clear Buffer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Export Stream",
+          "type": null,
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/trajectories",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "select",
+          "text": "-- Select Session --",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "Enter Session ID...",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Analyze Session",
+          "type": "submit",
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "All (0)",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Allow (0)",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Alert (0)",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Block (0)",
+          "type": null,
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/agents",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "Search by session ID, task, or agent...",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "select",
+          "text": "All StatusesFilter: ActiveFilt",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Live Poll (5s): ON",
+          "type": "button",
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/playground",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Live Agent Execution (User Tas",
+          "type": "button",
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Direct Intercept Simulator",
+          "type": "button",
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "1. ALLOW (Benign)Read public d",
+          "type": "button",
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "2. ALERT (Monitored)Calculate ",
+          "type": "button",
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "3. BLOCK (Attack)Unauthorized ",
+          "type": "button",
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "4. FAULT RECOVERYRead non-exis",
+          "type": "button",
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "textarea",
+          "text": "Read the public project docume",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Execute Agent Task",
+          "type": "submit",
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/evaluation",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "select",
+          "text": "Random Forest ClassifierLogist",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Retrain Baseline",
+          "type": null,
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/datasets",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/reports",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Export Audit (CSV)",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Export Audit (CSV)",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Export Report (JSON)",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Export Report (JSON)",
+          "type": null,
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/tasks",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Register Task Context",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "e.g. task_code_compilation",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "e.g. Autonomous build and test execution sandbox",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "textarea",
+          "text": "[\n  {\"tool\": \"read_file\"},\n  {",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "textarea",
+          "text": "[\n  {\"tool\": \"write_file\"},\n  ",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Register Task Context",
+          "type": "submit",
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/policies",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Create New Policy",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "Filter by policy ID or description...",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "All (6)",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Block (2)",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Alert (2)",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Allow (2)",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "e.g. block-destructive-file-write",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "select",
+          "text": "BLOCKALERTALLOW",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "",
+          "type": "number",
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "e.g. Block unapproved destructive writes to workspace",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "textarea",
+          "text": "{\n  \n}",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Register Policy Rule",
+          "type": "submit",
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/settings",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/system/diagnostics",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/decision-explorer",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "button",
+          "text": "Export JSON Artifact",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "select",
+          "text": "-- Select an Event --",
+          "type": null,
+          "role": null
+        }
+      ]
+    },
+    {
+      "route": "/audit",
+      "elements": [
+        {
+          "tag": "a",
+          "text": "AgentSentinel// AI RUNTIME SEC",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Overview Dashboard",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Live Monitor",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Decision Explorer",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Runtime Playground",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Trajectories",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Agents",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Policies",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Tasks",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Audit Logs",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Datasets",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Reports",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Settings",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "a",
+          "text": "Diagnostics",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "input",
+          "text": "Search by Interception ID, Session, Task, or Tool...",
+          "type": null,
+          "role": null
+        },
+        {
+          "tag": "select",
+          "text": "ALL (0)ALLOWALERTBLOCK",
+          "type": null,
+          "role": null
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "route": "/policies",
+      "control": "input (test-policy-99)",
+      "action": "FILL",
+      "expected": "Filled",
+      "actual": "Filled",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/policies/before_create.png"
+    },
+    {
+      "route": "/policies",
+      "control": "input (10)",
+      "action": "FILL",
+      "expected": "Filled",
+      "actual": "Filled",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/policies/before_create.png"
+    },
+    {
+      "route": "/tasks",
+      "control": "input (test-task-99)",
+      "action": "FILL",
+      "expected": "Filled",
+      "actual": "Filled",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/tasks/before_create.png"
+    },
+    {
+      "route": "/tasks",
+      "control": "input (Test Description)",
+      "action": "FILL",
+      "expected": "Filled",
+      "actual": "Filled",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/tasks/before_create.png"
+    },
+    {
+      "route": "/tasks",
+      "control": "textarea (Allowed Capabilities)",
+      "action": "FILL",
+      "expected": "Filled",
+      "actual": "Filled",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/tasks/before_create.png"
+    },
+    {
+      "route": "/tasks",
+      "control": "textarea (Denied Capabilities)",
+      "action": "FILL",
+      "expected": "Filled",
+      "actual": "Filled",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/tasks/filled_create.png"
+    },
+    {
+      "route": "/",
+      "control": "Sync Pipeline",
+      "action": "Click",
+      "expected": "Data reloaded",
+      "actual": "Reloaded",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/dashboard/after_sync.png"
+    },
+    {
+      "route": "/playground",
+      "control": "textarea (Prompt)",
+      "action": "FILL",
+      "expected": "Filled",
+      "actual": "Filled",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/playground/allow_before.png"
+    },
+    {
+      "route": "/playground",
+      "control": "input (Task)",
+      "action": "FILL",
+      "expected": "Filled",
+      "actual": "Filled",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/playground/allow_before.png"
+    },
+    {
+      "route": "/trajectories",
+      "control": "select (Session)",
+      "action": "SELECT",
+      "expected": "Option changed",
+      "actual": "Processed",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/trajectories/after_select_selectSession.png"
+    },
+    {
+      "route": "/trajectories",
+      "control": "input (Search)",
+      "action": "FILL",
+      "expected": "Value entered",
+      "actual": "Processed",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/trajectories/after_input_inputSearch.png"
+    },
+    {
+      "route": "/agents",
+      "control": "input (Search)",
+      "action": "FILL",
+      "expected": "Value entered",
+      "actual": "Processed",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/agents/after_input_inputSearch.png"
+    },
+    {
+      "route": "/agents",
+      "control": "select (Filter)",
+      "action": "SELECT",
+      "expected": "Option changed",
+      "actual": "Processed",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/agents/after_select_selectFilter.png"
+    },
+    {
+      "route": "/evaluation",
+      "control": "select (Model)",
+      "action": "SELECT",
+      "expected": "Option changed",
+      "actual": "Processed",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/evaluation/after_select_selectModel.png"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "select (Event)",
+      "action": "SELECT",
+      "expected": "Option changed",
+      "actual": "Processed",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/decision-explorer/after_select_selectEvent.png"
+    },
+    {
+      "route": "/audit",
+      "control": "input (Search)",
+      "action": "FILL",
+      "expected": "Value entered",
+      "actual": "Processed",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/audit/after_input_inputSearch.png"
+    },
+    {
+      "route": "/audit",
+      "control": "select (Filter)",
+      "action": "SELECT",
+      "expected": "Option changed",
+      "actual": "Processed",
+      "api": "PASS",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "reports/final_live_chrome/audit/after_select_selectFilter.png"
+    },
+    {
+      "route": "/",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "button (Sync Pipeline)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (Export Audit)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "button (Export Audit)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "button (15m)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "button (1h)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "button (24h)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "button (Live)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "input (Filter by tool or session...)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/",
+      "control": "a (View Full Audit Log)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "button (Pause Stream)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "button (High-Risk Only)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "button (Clear Buffer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/live",
+      "control": "button (Export Stream)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "select (-- Select Session --)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "input (Enter Session ID...)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "button (Analyze Session)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "button (All (0))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "button (Allow (0))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "button (Alert (0))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/trajectories",
+      "control": "button (Block (0))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "input (Search by session ID, task, or agent...)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "select (All StatusesFilter: ActiveFilt)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/agents",
+      "control": "button (Live Poll (5s): ON)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "button (Live Agent Execution (User Tas)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "button (Direct Intercept Simulator)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "button (1. ALLOW (Benign)Read public d)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "button (2. ALERT (Monitored)Calculate )",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "button (3. BLOCK (Attack)Unauthorized )",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "button (4. FAULT RECOVERYRead non-exis)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "input ()",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/playground",
+      "control": "textarea (Read the public project docume)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "select (Random Forest ClassifierLogist)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/evaluation",
+      "control": "button (Retrain Baseline)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/datasets",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Export Audit (CSV))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "button (Export Audit (CSV))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "a (Export Report (JSON))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/reports",
+      "control": "button (Export Report (JSON))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "button (Register Task Context)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "input (e.g. task_code_compilation)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "input (e.g. Autonomous build and test execution sandbox)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "textarea ([\n  {\"tool\": \"read_file\"},\n  {)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/tasks",
+      "control": "textarea ([\n  {\"tool\": \"write_file\"},\n  )",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "button (Create New Policy)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "input (Filter by policy ID or description...)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "button (All (6))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "button (Block (2))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "button (Alert (2))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "button (Allow (2))",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "input (e.g. block-destructive-file-write)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "select (BLOCKALERTALLOW)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "input ()",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "input (e.g. Block unapproved destructive writes to workspace)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "textarea ({\n  \n})",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/policies",
+      "control": "button (Register Policy Rule)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/settings",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/system/diagnostics",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "button (Export JSON Artifact)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/decision-explorer",
+      "control": "select (-- Select an Event --)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (AgentSentinel// AI RUNTIME SEC)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Overview Dashboard)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Live Monitor)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Decision Explorer)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Runtime Playground)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Trajectories)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Agents)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Policies)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Tasks)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Audit Logs)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Datasets)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Reports)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Settings)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "a (Diagnostics)",
+      "action": "CLICK",
+      "expected": "UI responds",
+      "actual": "UI responded",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "PASS",
+      "loading": "PASS",
+      "final": "PASS",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "input (Search by Interception ID, Session, Task, or Tool...)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    },
+    {
+      "route": "/audit",
+      "control": "select (ALL (0)ALLOWALERTBLOCK)",
+      "action": "N/A",
+      "expected": "N/A",
+      "actual": "N/A",
+      "api": "N/A",
+      "db": "N/A",
+      "consoleErr": "N/A",
+      "loading": "N/A",
+      "final": "NOT APPLICABLE",
+      "screenshotPath": "None"
+    }
+  ],
+  "playground_times": []
+}

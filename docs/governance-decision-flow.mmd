@@ -1,0 +1,37 @@
+flowchart TD
+    Start([New Tool Call]) --> M1[M1: Data Foundation]
+    M1 --> M2[M2: Action Normalization]
+    M2 --> M3[M3: Behavioral Sequence]
+    M3 --> M4[M4: Feature Extraction]
+    
+    M4 --> M5{M5: ML Risk \n Evaluation}
+    M1 --> M6{M6: Task \n Authorization}
+    
+    %% M5 Path
+    M5 -->|Exception| FailSafe[Fail-Safe: BLOCK]
+    M5 -->|Prob < Threshold| LowRisk(Risk: LOW)
+    M5 -->|Prob >= Threshold| HighRisk(Risk: HIGH)
+    
+    %% M6 Path
+    M6 -->|Context Match| AuthPass(Auth: PASS)
+    M6 -->|Out of Scope| AuthFail(Auth: DENY)
+    
+    LowRisk --> M7[M7: Policy Fusion Engine]
+    HighRisk --> M7
+    AuthPass --> M7
+    AuthFail --> M7
+    
+    %% M7 Decision
+    M7 -->|Check Explicit Policies| M7Pol{Policies Match?}
+    M7Pol -->|Deny| Block(BLOCK)
+    M7Pol -->|Alert| Alert(ALERT)
+    M7Pol -->|None| Baseline{Baseline Matrix}
+    
+    Baseline -->|Risk: HIGH| Block
+    Baseline -->|Auth: DENY| Block
+    Baseline -->|Risk: LOW & Auth: PASS| Allow(ALLOW)
+    
+    Block --> Interceptor[M8: Runtime Interceptor]
+    Alert --> Interceptor
+    Allow --> Interceptor
+    FailSafe --> Interceptor

@@ -1,0 +1,26 @@
+sequenceDiagram
+    participant User
+    participant Agent as M12: Agent LLM (Qwen3)
+    participant Interceptor as M8: Interceptor
+    participant Pipeline as M1-M7: Governance Pipeline
+    participant OS as Host System
+    
+    User->>Agent: Define Task
+    loop Re-planning
+        Agent->>Interceptor: Request Tool Execution (JSON)
+        Interceptor->>Pipeline: Evaluate Tool Call Payload
+        Pipeline-->>Interceptor: Decision (ALLOW / ALERT / BLOCK)
+        
+        alt Decision == BLOCK
+            Interceptor-->>Agent: Fabricated Error: "Blocked by Policy"
+            Note over Agent,Interceptor: Zero-execution achieved. Agent must replan.
+        else Decision == ALERT
+            Interceptor->>OS: Execute Tool (Monitored)
+            OS-->>Interceptor: Execution Result
+            Interceptor-->>Agent: Execution Result + Warning
+        else Decision == ALLOW
+            Interceptor->>OS: Execute Tool
+            OS-->>Interceptor: Execution Result
+            Interceptor-->>Agent: Execution Result
+        end
+    end

@@ -1,0 +1,79 @@
+{
+  "api_latency": {
+    "/health": "25.06 ms",
+    "/system/diagnostics": "30.49 ms",
+    "/audit": "10.38 ms",
+    "/sessions": "20.56 ms",
+    "/tasks": "5.91 ms",
+    "/policies": "5.10 ms",
+    "/reports/compliance": "28.80 ms"
+  },
+  "frontend_metrics": {
+    "/dashboard": {
+      "load_time_ms": "1504.56",
+      "avg_fps": "60.23",
+      "long_frames_2sec": 68,
+      "dom_nodes": 336
+    },
+    "/live": {
+      "load_time_ms": "726.90",
+      "avg_fps": "58.52",
+      "long_frames_2sec": 70,
+      "dom_nodes": 699
+    },
+    "/trajectories": {
+      "load_time_ms": "697.07",
+      "avg_fps": "60.11",
+      "long_frames_2sec": 76,
+      "dom_nodes": 371
+    },
+    "/agents": {
+      "load_time_ms": "649.84",
+      "avg_fps": "59.66",
+      "long_frames_2sec": 73,
+      "dom_nodes": 922
+    },
+    "/settings": {
+      "load_time_ms": "622.15",
+      "avg_fps": "60.34",
+      "long_frames_2sec": 71,
+      "dom_nodes": 232
+    },
+    "/playground": {
+      "load_time_ms": "630.86",
+      "avg_fps": "60.10",
+      "long_frames_2sec": 79,
+      "dom_nodes": 261
+    },
+    "/evaluation": {
+      "load_time_ms": "614.85",
+      "avg_fps": "60.09",
+      "long_frames_2sec": 75,
+      "dom_nodes": 339
+    },
+    "/datasets": {
+      "load_time_ms": "3045.71",
+      "avg_fps": "60.50",
+      "long_frames_2sec": 74,
+      "dom_nodes": 269
+    },
+    "/reports": {
+      "load_time_ms": "637.97",
+      "avg_fps": "60.29",
+      "long_frames_2sec": 73,
+      "dom_nodes": 294
+    },
+    "/tasks": {
+      "load_time_ms": "630.68",
+      "avg_fps": "60.09",
+      "long_frames_2sec": 72,
+      "dom_nodes": 370
+    },
+    "/policies": {
+      "load_time_ms": "632.11",
+      "avg_fps": "60.14",
+      "long_frames_2sec": 73,
+      "dom_nodes": 379
+    }
+  }
+}

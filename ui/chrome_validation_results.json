@@ -1,0 +1,27 @@
+{
+  "chrome_version": "153.0.8010.50",
+  "routes": {
+    "/dashboard": "PASS",
+    "/live": "PASS",
+    "/audit": "PASS",
+    "/decision-explorer": "PASS",
+    "/agents": "PASS",
+    "/settings": "PASS",
+    "/reports": "PASS",
+    "/evaluation": "PASS",
+    "/datasets": "PASS",
+    "/tasks": "PASS",
+    "/policies": "PASS",
+    "/trajectories": "PASS"
+  },
+  "all_routes_pass": true,
+  "console_errors": [],
+  "page_errors": [],
+  "network_errors": [],
+  "cross_page_check": "PASS",
+  "refresh_check": "PASS",
+  "details": {
+    "dashboard_interactive": "PASS",
+    "audit_interactive": "PASS"
+  }
+}

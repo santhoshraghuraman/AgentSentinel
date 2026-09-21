@@ -1,0 +1,28 @@
+{
+  "model_version": "1.0.0",
+  "dataset_version": "datasets/TraceLab/ATBench/test.json",
+  "feature_version": "v1",
+  "algorithm": "random_forest",
+  "split_information": {
+    "test_size": 0.2,
+    "random_seed": 42
+  },
+  "total_dataset_records": 1000,
+  "test_samples": 200,
+  "class_distribution": {
+    "test_positive_class": 99,
+    "test_negative_class": 101
+  },
+  "accuracy": 0.735,
+  "precision": 0.7805,
+  "recall": 0.6465,
+  "f1_score": 0.7072,
+  "roc_auc": 0.7813,
+  "confusion_matrix": {
+    "true_negative": 83,
+    "false_positive": 18,
+    "false_negative": 35,
+    "true_positive": 64
+  },
+  "trained_at": "2026-09-13T09:52:47.361368"
+}
