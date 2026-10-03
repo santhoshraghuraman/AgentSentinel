@@ -63,6 +63,28 @@ To run the complete system (Backend, Frontend, and SQLite database migrations) i
 
 Access the UI at: `http://localhost:4173/`
 
+## Manual Run (Development Mode)
+
+If you prefer to start the components manually for debugging or active development:
+
+1. **Start the Backend (FastAPI):**
+   ```powershell
+   # Activate the virtual environment
+   .\.venv\Scripts\activate
+   # Run the server
+   python -m uvicorn src.agentsentinel.api.main:app --host 127.0.0.1 --port 8000 --reload
+   ```
+
+2. **Start the Frontend (React/Vite):**
+   Open a second terminal window:
+   ```powershell
+   cd ui
+   npm install
+   npm run dev
+   ```
+
+Access the development UI at: `http://localhost:5173/` (Vite's default development port).
+
 ## Development & Testing
 
 **Backend API Specs:** Available at `http://localhost:8000/docs` when running.
