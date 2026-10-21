@@ -38,7 +38,7 @@ This report validates the **AgentSentinel AI Runtime Security Dashboard** fronte
 
 ### Audit Logs (`/audit`)
 **Status: PASS**
-- Validated immutable cryptographic audit ledger.
+- Validated durable SQLite audit ledger with interception-ID correlation.
 - Demonstrated expandable audit log items with full invocation details and normalized semantic payloads.
 
 ### Decision Explorer (`/decision-explorer`)

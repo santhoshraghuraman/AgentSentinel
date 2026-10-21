@@ -1,0 +1,338 @@
+"""
+Generate a professional, high-resolution layered 3D-styled SVG architecture diagram for AgentSentinel.
+"""
+
+svg_content = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 880" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090D16" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#070A10" />
+    </linearGradient>
+
+    <!-- Slab Gradients -->
+    <linearGradient id="layer1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E1B4B" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#312E81" stop-opacity="0.6" />
+    </linearGradient>
+    <linearGradient id="layer2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#334155" stop-opacity="0.7" />
+    </linearGradient>
+    <linearGradient id="layer3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0C4A6E" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0369A1" stop-opacity="0.6" />
+    </linearGradient>
+    <linearGradient id="layer4Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4C0519" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#831843" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#14532D" stop-opacity="0.75" />
+    </linearGradient>
+    <linearGradient id="layer5Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#134E4A" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0F766E" stop-opacity="0.6" />
+    </linearGradient>
+
+    <!-- Drop Shadows & Glows -->
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+    <filter id="neonGlowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="neonGlowRose" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Markers for arrows -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 z" fill="#38BDF8" />
+    </marker>
+    <marker id="arrowEmerald" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 z" fill="#10B981" />
+    </marker>
+    <marker id="arrowRose" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 z" fill="#F43F5E" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="100%" height="100%" fill="url(#bgGrad)" />
+
+  <!-- Grid overlay for technical feel -->
+  <g stroke="#334155" stroke-opacity="0.15" stroke-width="1">
+    <line x1="0" y1="120" x2="1200" y2="120" />
+    <line x1="0" y1="280" x2="1200" y2="280" />
+    <line x1="0" y1="440" x2="1200" y2="440" />
+    <line x1="0" y1="600" x2="1200" y2="600" />
+    <line x1="0" y1="740" x2="1200" y2="740" />
+  </g>
+
+  <!-- Header Section -->
+  <g transform="translate(60, 45)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="800" fill="#F8FAFC" letter-spacing="1">
+      AGENTSENTINEL ARCHITECTURAL REFERENCE MONITOR
+    </text>
+    <text x="0" y="24" font-family="'JetBrains Mono', 'Fira Code', Consolas, monospace" font-size="12" font-weight="600" fill="#38BDF8" letter-spacing="0.5">
+      // FIVE-TIER LAYERED BEHAVIORAL GOVERNANCE &amp; PRE-EXECUTION MEDIATION TOPOLOGY
+    </text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- LAYER 1: AGENT & PROPOSAL TIER             -->
+  <!-- ========================================== -->
+  <g transform="translate(60, 95)" filter="url(#cardShadow)">
+    <rect width="1080" height="110" rx="12" fill="url(#layer1Grad)" stroke="#6366F1" stroke-width="1.5" />
+    <rect x="0" y="0" width="8" height="110" rx="4" fill="#6366F1" />
+    
+    <text x="24" y="28" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#818CF8" letter-spacing="1.5">
+      TIER 1 • AUTONOMOUS AGENT &amp; PROPOSAL LAYER (M12)
+    </text>
+
+    <!-- Node 1A: Agent Engine -->
+    <rect x="24" y="42" width="460" height="52" rx="8" fill="#1E1B4B" stroke="#4F46E5" stroke-width="1" />
+    <text x="40" y="66" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">
+      Autonomous LLM Agent (Ollama Qwen3:4b / SDK Harness)
+    </text>
+    <text x="40" y="82" font-family="'JetBrains Mono', monospace" font-size="10" fill="#A5B4FC">
+      LangChain / Raw Callable Wrapper • Emits Tool Calls
+    </text>
+
+    <!-- Arrow between Agent and Action -->
+    <line x1="484" y1="68" x2="528" y2="68" stroke="#818CF8" stroke-width="2" marker-end="url(#arrowCyan)" />
+
+    <!-- Node 1B: Proposed Action -->
+    <rect x="540" y="42" width="516" height="52" rx="8" fill="#1E1B4B" stroke="#4F46E5" stroke-width="1" />
+    <text x="556" y="66" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">
+      Proposed Tool Invocation Payload
+    </text>
+    <text x="556" y="82" font-family="'JetBrains Mono', monospace" font-size="10" fill="#A5B4FC">
+      { tool: "execute_code", arguments: { cmd: "..." }, session_id, task_id }
+    </text>
+  </g>
+
+  <!-- Flow Connector 1 -> 2 -->
+  <g transform="translate(600, 205)">
+    <line x1="0" y1="0" x2="0" y2="35" stroke="#38BDF8" stroke-width="2.5" stroke-dasharray="4,4" marker-end="url(#arrowCyan)" />
+    <text x="12" y="20" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#38BDF8">
+      Thread Interception (M8 Gate)
+    </text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- LAYER 2: RUNTIME MEDIATION & NORMALIZATION -->
+  <!-- ========================================== -->
+  <g transform="translate(60, 245)" filter="url(#cardShadow)">
+    <rect width="1080" height="110" rx="12" fill="url(#layer2Grad)" stroke="#475569" stroke-width="1.5" />
+    <rect x="0" y="0" width="8" height="110" rx="4" fill="#0EA5E9" />
+    
+    <text x="24" y="28" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#38BDF8" letter-spacing="1.5">
+      TIER 2 • RUNTIME MEDIATION &amp; DATA CONTRACT NORMALIZATION (M1, M1.5, M2, M3)
+    </text>
+
+    <!-- Node 2A: Interceptor -->
+    <rect x="24" y="42" width="280" height="52" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1" />
+    <text x="38" y="65" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">
+      M8: Runtime Interceptor
+    </text>
+    <text x="38" y="81" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94A3B8">
+      Acquires Lock • Pre-Execution Hold
+    </text>
+
+    <!-- Arrow -->
+    <line x1="304" y1="68" x2="340" y2="68" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowCyan)" />
+
+    <!-- Node 2B: Normalizer -->
+    <rect x="350" y="42" width="340" height="52" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1" />
+    <text x="364" y="65" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">
+      M2: Action Normalization Engine
+    </text>
+    <text x="364" y="81" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94A3B8">
+      7 Action Categories • Mutating/Destructive Flags
+    </text>
+
+    <!-- Arrow -->
+    <line x1="690" y1="68" x2="726" y2="68" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowCyan)" />
+
+    <!-- Node 2C: Sequence Tracker -->
+    <rect x="736" y="42" width="320" height="52" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1" />
+    <text x="750" y="65" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">
+      M3: Behavioral Sequence Graph
+    </text>
+    <text x="750" y="81" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94A3B8">
+      Session Sliding Window • State Transitions
+    </text>
+  </g>
+
+  <!-- Flow Connector 2 -> 3 -->
+  <g transform="translate(600, 355)">
+    <line x1="0" y1="0" x2="0" y2="35" stroke="#38BDF8" stroke-width="2.5" stroke-dasharray="4,4" marker-end="url(#arrowCyan)" />
+    <text x="12" y="20" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#38BDF8">
+      Parallel Analysis Dispatch
+    </text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- LAYER 3: PARALLEL GOVERNANCE ANALYSIS      -->
+  <!-- ========================================== -->
+  <g transform="translate(60, 395)" filter="url(#cardShadow)">
+    <rect width="1080" height="130" rx="12" fill="url(#layer3Grad)" stroke="#0284C7" stroke-width="1.5" />
+    <rect x="0" y="0" width="8" height="130" rx="4" fill="#38BDF8" />
+    
+    <text x="24" y="26" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#BAE6FD" letter-spacing="1.5">
+      TIER 3 • PARALLEL BEHAVIORAL RISK &amp; TASK CONTEXT AUTHORIZATION (M4, M5, M6)
+    </text>
+
+    <!-- Node 3A: Feature Extractor -->
+    <rect x="24" y="40" width="300" height="74" rx="8" fill="#082F49" stroke="#0284C7" stroke-width="1" />
+    <text x="38" y="62" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">
+      M4: Feature Extractor (22-D Vector)
+    </text>
+    <text x="38" y="78" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#7DD3FC">
+      • Category Frequencies &amp; Transition Densities
+    </text>
+    <text x="38" y="93" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#7DD3FC">
+      • Time Deltas &amp; Mutation Ratios
+    </text>
+
+    <!-- Arrow 3A -> 3B -->
+    <line x1="324" y1="77" x2="360" y2="77" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowCyan)" />
+
+    <!-- Node 3B: Risk Model -->
+    <rect x="370" y="40" width="340" height="74" rx="8" fill="#082F49" stroke="#0284C7" stroke-width="1" />
+    <text x="384" y="62" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">
+      M5: Behavioral Risk Engine (Dual-Core)
+    </text>
+    <text x="384" y="78" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#7DD3FC">
+      • Random Forest (100 Trees): Continuous R_ML
+    </text>
+    <text x="384" y="93" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#7DD3FC">
+      • Heuristic Safety Guardrails (Zero Day Fallback)
+    </text>
+
+    <!-- Node 3C: Task Auth -->
+    <rect x="740" y="40" width="316" height="74" rx="8" fill="#082F49" stroke="#0284C7" stroke-width="1" />
+    <text x="754" y="62" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">
+      M6: Task Authorization Engine
+    </text>
+    <text x="754" y="78" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#7DD3FC">
+      • Strict Default-Deny Security Model
+    </text>
+    <text x="754" y="93" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#7DD3FC">
+      • Capability Whitelist vs Denylist Matching
+    </text>
+  </g>
+
+  <!-- Flow Connector 3 -> 4 -->
+  <g transform="translate(600, 525)">
+    <line x1="0" y1="0" x2="0" y2="35" stroke="#F43F5E" stroke-width="2.5" stroke-dasharray="4,4" marker-end="url(#arrowRose)" />
+    <text x="12" y="20" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#F43F5E">
+      Authoritative Policy Fusion (M7)
+    </text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- LAYER 4: POLICY FUSION & ENFORCEMENT GATE  -->
+  <!-- ========================================== -->
+  <g transform="translate(60, 565)" filter="url(#cardShadow)">
+    <rect width="1080" height="125" rx="12" fill="url(#layer4Grad)" stroke="#BE123C" stroke-width="1.5" />
+    <rect x="0" y="0" width="8" height="125" rx="4" fill="#F43F5E" />
+    
+    <text x="24" y="26" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#FECDD3" letter-spacing="1.5">
+      TIER 4 • POLICY FUSION &amp; PRE-EXECUTION ENFORCEMENT GATE (M7, M8)
+    </text>
+
+    <!-- Node 4A: Fusion Engine -->
+    <rect x="24" y="40" width="410" height="70" rx="8" fill="#1C1917" stroke="#991B1B" stroke-width="1" />
+    <text x="38" y="62" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">
+      M7: Policy Fusion Engine (5 Security Invariants)
+    </text>
+    <text x="38" y="78" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#FDA4AF">
+      • I1: Denial Dominance | I2: Severe Risk Override
+    </text>
+    <text x="38" y="93" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#FDA4AF">
+      • I3: Destructive Block | I4: Priority | I5: Fail-Closed
+    </text>
+
+    <!-- Arrow -->
+    <line x1="434" y1="75" x2="470" y2="75" stroke="#F43F5E" stroke-width="2" marker-end="url(#arrowRose)" />
+
+    <!-- Node 4B: Verdicts -->
+    <rect x="480" y="40" width="576" height="70" rx="8" fill="#1C1917" stroke="#44403C" stroke-width="1" />
+    
+    <!-- Allow Sub-badge -->
+    <rect x="495" y="48" width="165" height="54" rx="6" fill="#14532D" stroke="#22C55E" stroke-width="1" />
+    <text x="510" y="68" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" fill="#86EFAC">ALLOW VERDICT</text>
+    <text x="510" y="86" font-family="'JetBrains Mono', monospace" font-size="9" fill="#DCFCE7">Executes Tool (Host: 1)</text>
+
+    <!-- Alert Sub-badge -->
+    <rect x="675" y="48" width="165" height="54" rx="6" fill="#78350F" stroke="#F59E0B" stroke-width="1" />
+    <text x="690" y="68" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" fill="#FDE68A">ALERT VERDICT</text>
+    <text x="690" y="86" font-family="'JetBrains Mono', monospace" font-size="9" fill="#FEF3C7">Executes + Audit Flag</text>
+
+    <!-- Block Sub-badge -->
+    <rect x="855" y="48" width="185" height="54" rx="6" fill="#7F1D1D" stroke="#EF4444" stroke-width="1.5" />
+    <text x="870" y="68" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="800" fill="#FCA5A5">BLOCK VERDICT</text>
+    <text x="870" y="86" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#FEE2E2">ZERO HOST INVOCATION</text>
+  </g>
+
+  <!-- Flow Connector 4 -> 5 -->
+  <g transform="translate(600, 690)">
+    <line x1="0" y1="0" x2="0" y2="35" stroke="#10B981" stroke-width="2.5" stroke-dasharray="4,4" marker-end="url(#arrowEmerald)" />
+    <text x="12" y="20" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#10B981">
+      Immutable Audit Persistence &amp; Telemetry
+    </text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- LAYER 5: PERSISTENCE & OBSERVABILITY       -->
+  <!-- ========================================== -->
+  <g transform="translate(60, 730)" filter="url(#cardShadow)">
+    <rect width="1080" height="110" rx="12" fill="url(#layer5Grad)" stroke="#0D9488" stroke-width="1.5" />
+    <rect x="0" y="0" width="8" height="110" rx="4" fill="#10B981" />
+    
+    <text x="24" y="26" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#A7F3D0" letter-spacing="1.5">
+      TIER 5 • RELATIONAL PERSISTENCE, API GATEWAY &amp; OBSERVABILITY DASHBOARD (M9, M10, M11)
+    </text>
+
+    <!-- Node 5A: SQLite -->
+    <rect x="24" y="38" width="310" height="56" rx="8" fill="#042F2E" stroke="#0D9488" stroke-width="1" />
+    <text x="38" y="60" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">
+      M10: SQLite Relational Ledger
+    </text>
+    <text x="38" y="77" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#5EEAD4">
+      UUIDv4 Interception ID • Immutable Audit Log
+    </text>
+
+    <!-- Arrow -->
+    <line x1="334" y1="66" x2="370" y2="66" stroke="#10B981" stroke-width="2" marker-end="url(#arrowEmerald)" />
+
+    <!-- Node 5B: FastAPI -->
+    <rect x="380" y="38" width="310" height="56" rx="8" fill="#042F2E" stroke="#0D9488" stroke-width="1" />
+    <text x="394" y="60" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">
+      M9: FastAPI REST Service Layer
+    </text>
+    <text x="394" y="77" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#5EEAD4">
+      /api/v1/intercept, /audit, /policies, /tasks
+    </text>
+
+    <!-- Arrow -->
+    <line x1="690" y1="66" x2="726" y2="66" stroke="#10B981" stroke-width="2" marker-end="url(#arrowEmerald)" />
+
+    <!-- Node 5C: React UI -->
+    <rect x="736" y="38" width="320" height="56" rx="8" fill="#042F2E" stroke="#0D9488" stroke-width="1" />
+    <text x="750" y="60" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">
+      M11: React 19 Observability Suite
+    </text>
+    <text x="750" y="77" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#5EEAD4">
+      14 Dedicated Screens • Telemetry • 3D Topology
+    </text>
+  </g>
+</svg>'''
+
+with open("docs/architecture-3d.svg", "w", encoding="utf-8") as f:
+    f.write(svg_content.strip())
+print("Saved docs/architecture-3d.svg successfully.")

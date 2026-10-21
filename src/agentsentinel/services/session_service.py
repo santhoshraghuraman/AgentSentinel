@@ -4,6 +4,16 @@ import datetime
 from src.agentsentinel.repositories.base import BaseSessionRepository, BaseAuditRepository
 from src.agentsentinel.api.schemas import SafeSessionResponse
 
+def _format_utc_iso(dt_val) -> str:
+    if isinstance(dt_val, datetime.datetime):
+        if dt_val.tzinfo is None:
+            return dt_val.replace(tzinfo=datetime.timezone.utc).isoformat().replace("+00:00", "Z")
+        return dt_val.astimezone(datetime.timezone.utc).isoformat().replace("+00:00", "Z")
+    s = str(dt_val) if dt_val is not None else ""
+    if "T" in s and not s.endswith("Z") and "+" not in s:
+        return s + "Z"
+    return s
+
 class SessionService:
     """Service for managing AgentSessions."""
 
@@ -25,7 +35,7 @@ class SessionService:
             session_id=session_id,
             task_id=task_id,
             agent_id=agent_id,
-            created_at=session_data["created_at"].isoformat(),
+            created_at=_format_utc_iso(session_data["created_at"]),
             status=session_data["status"],
             verdict_counts={"ALLOW": 0, "BLOCK": 0, "ALERT": 0},
             total_events=0
@@ -57,7 +67,7 @@ class SessionService:
             session_id=data["session_id"],
             task_id=data["task_id"],
             agent_id=data["agent_id"],
-            created_at=data["created_at"].isoformat() if isinstance(data["created_at"], datetime.datetime) else data["created_at"],
+            created_at=_format_utc_iso(data["created_at"]),
             status=data["status"],
             verdict_counts=verdict_counts,
             total_events=total_events
@@ -73,7 +83,7 @@ class SessionService:
                     session_id=d["session_id"],
                     task_id=d["task_id"],
                     agent_id=d["agent_id"],
-                    created_at=d["created_at"].isoformat() if isinstance(d["created_at"], datetime.datetime) else d["created_at"],
+                    created_at=_format_utc_iso(d["created_at"]),
                     status=d["status"],
                     verdict_counts=verdict_counts,
                     total_events=total_events

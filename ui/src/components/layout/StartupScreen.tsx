@@ -15,22 +15,22 @@ export function StartupScreen({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  if (!showSplash) return <>{children}</>;
-
   return (
     <>
-      <div 
-        className={cn(
-          "fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F4F5FB] motion-safe:transition-opacity duration-500",
-          fade ? "opacity-0" : "opacity-100"
-        )}
-      >
-        <div className="flex flex-col items-center motion-safe:animate-pulse">
-          <img src="/logo-full.png" alt="AgentSentinel Logo" className="w-80 h-auto" />
+      {showSplash && (
+        <div 
+          className={cn(
+            "fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F4F5FB] motion-safe:transition-opacity duration-500 pointer-events-none",
+            fade ? "opacity-0" : "opacity-100"
+          )}
+        >
+          <div className="flex flex-col items-center motion-safe:animate-pulse">
+            <img src="/logo-full.png" alt="AgentSentinel Logo" className="w-80 h-auto" />
+          </div>
         </div>
-      </div>
-      {/* Render children in background so data fetching can start immediately without blocking */}
-      <div className={cn("motion-safe:transition-opacity duration-500 h-full", fade ? "opacity-100" : "opacity-0")}>
+      )}
+      {/* Render children with stable wrapper to prevent remounting and state loss */}
+      <div className={cn("motion-safe:transition-opacity duration-500 h-full", fade || !showSplash ? "opacity-100" : "opacity-0")}>
         {children}
       </div>
     </>

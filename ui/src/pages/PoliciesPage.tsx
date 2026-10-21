@@ -230,7 +230,7 @@ export function PoliciesPage() {
             variant={decisionFilter === 'ALL' ? 'default' : 'ghost'}
             size="sm"
             onClick={() => setDecisionFilter('ALL')}
-            className={cn("h-7 text-[11px] font-mono px-2.5", decisionFilter === 'ALL' ? "bg-slate-900 text-white" : "text-slate-600")}
+            className={cn("h-7 text-[11px] font-mono px-2.5", decisionFilter === 'ALL' ? "bg-slate-800 text-white" : "text-slate-600")}
           >
             All ({totalCount})
           </Button>

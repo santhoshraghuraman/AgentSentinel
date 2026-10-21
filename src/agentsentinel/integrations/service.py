@@ -11,10 +11,13 @@ with final M8 RuntimeEvents using the unique interception_id.
 
 import dataclasses
 import logging
+from datetime import datetime, timezone
 from typing import Any, Optional, Dict
 
+from src.agentsentinel.models.normalized import NormalizedEvent
+from src.agentsentinel.models.trajectory import EventRole
 from src.agentsentinel.runtime.interceptor import RuntimeInterceptor, InterceptionResult
-from src.agentsentinel.runtime.state import RuntimeSession, ValidatedInvocation
+from src.agentsentinel.runtime.state import RuntimeSession, ValidatedInvocation, RuntimeEvent
 from src.agentsentinel.repositories.base import (
     BaseAuditRepository,
     BasePolicyRepository,
@@ -126,7 +129,7 @@ class LocalSentinelService:
         return tool_result
 
     def _sync_session(self, session_id: str, task_id: str) -> RuntimeSession:
-        """Ensure the session exists and has live policies from M10."""
+        """Ensure the session exists, has live policies from M10, and hydrates historical trajectory."""
         task_context = self._task_repo.get(task_id)
         if task_context is None:
             raise ValueError(f"Unknown task_id: {task_id}")
@@ -138,6 +141,52 @@ class LocalSentinelService:
             task_context=task_context,
             policies=tuple(policies),
         )
+
+        # Hydrate historical events from audit log belonging to this session
+        historical_events = self._audit_repo.get_by_session(session_id)
+        max_seq = 0
+        seen_ids = set()
+
+        sorted_events = sorted(historical_events, key=lambda e: e.sequence_number or 0)
+
+        with session.acquire_lock():
+            for evt in sorted_events:
+                if not evt.action:
+                    continue
+                if evt.interception_id in seen_ids:
+                    continue
+                seen_ids.add(evt.interception_id)
+
+                if isinstance(evt.timestamp, datetime):
+                    if evt.timestamp.tzinfo is None:
+                        ts_str = evt.timestamp.replace(tzinfo=timezone.utc).isoformat().replace("+00:00", "Z")
+                    else:
+                        ts_str = evt.timestamp.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+                elif hasattr(evt.timestamp, "isoformat"):
+                    ts_str = evt.timestamp.isoformat()
+                    if not ts_str.endswith("Z") and "+" not in ts_str:
+                        ts_str += "Z"
+                else:
+                    ts_str = str(evt.timestamp)
+                normalized_event = NormalizedEvent(
+                    id=f"runtime_{evt.interception_id}",
+                    timestamp=ts_str,
+                    role=EventRole.TOOL_CALL,
+                    content=None,
+                    normalized_actions=[evt.action],
+                )
+                runtime_event = RuntimeEvent(
+                    sequence_number=evt.sequence_number,
+                    normalized_event=normalized_event,
+                    execution_state=evt.execution_state,
+                    interception_id=evt.interception_id,
+                )
+                session.append_event(runtime_event)
+                if evt.sequence_number and evt.sequence_number > max_seq:
+                    max_seq = evt.sequence_number
+
+            session._sequence_counter = max_seq
+
         return session
 
     def _flush_audit(

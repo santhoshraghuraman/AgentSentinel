@@ -1,0 +1,24 @@
+{
+  "lightweight": {
+    "scenario": "Direct M8 Interception (Lightweight)",
+    "steady_state_mean_ms": 80.65,
+    "overall_mean_ms": 761.9,
+    "min_ms": 74.77,
+    "max_ms": 3486.88,
+    "sample_size": 5,
+    "iterations_ms": [
+      3486.88,
+      78.23,
+      85.63,
+      74.77,
+      83.97
+    ]
+  },
+  "agent_task": {
+    "scenario": "Live Agent Task (Qwen3:4b)",
+    "total_latency_s": 39.23,
+    "status": "completed",
+    "trace_steps": 3,
+    "audit_events_count": 1
+  }
+}

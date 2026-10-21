@@ -28,7 +28,7 @@ test.describe('Dashboard & Live Monitor UI Tests', () => {
     await expect(page.getByRole('heading', { name: '10' })).toBeVisible();
 
     await expect(page.getByText('Blocked', { exact: true })).toBeVisible();
-    await expect(page.getByRole('heading', { name: '2' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: '2', exact: true })).toBeVisible();
   });
 
   test('Live Monitor loads and renders events', async ({ page }) => {

@@ -4,45 +4,29 @@ test('Measure Playground Latency', async ({ page }) => {
   test.setTimeout(120000); // 2 minutes
   
   await page.goto('http://localhost:5173/playground');
+  await expect(page.locator('h1:has-text("Runtime Playground")')).toBeVisible();
   
-  // Wait for page to load
-  await page.waitForSelector('h1:has-text("Runtime Playground")');
+  // Test Direct Intercept Simulator for deterministic latency benchmarking
+  await page.click('button:has-text("Direct Intercept Simulator")');
+  await expect(page.locator('button:has-text("Intercept Tool Call")')).toBeVisible();
   
-  // Click ALLOW scenario
-  await page.click('button:has-text("ALLOW (Benign)")');
+  // Fill payload
+  const uniqueSession = `latency-test-${Date.now()}`;
+  await page.fill('input[value*="playground-session"]', uniqueSession);
+  await page.fill('input[value*="read_file"]', 'read_file');
+  const argsInput = page.locator('textarea').first();
+  await argsInput.fill(JSON.stringify({ path: "public_docs.txt" }, null, 2));
+
+  // T0: User Click
+  const t0 = performance.now();
+  await page.click('button:has-text("Intercept Tool Call")');
   
-  // Start timing
-  const t0 = Date.now();
+  // T1: Interception Acknowledged and Outcome Rendered
+  const outcomeBanner = page.locator('[data-testid="simulator-outcome-banner"]');
+  await expect(outcomeBanner).toBeVisible({ timeout: 15000 });
+  const t1 = performance.now();
   
-  // Click Execute
-  await page.click('button:has-text("Execute Agent Task")');
-  const t1 = Date.now();
-  console.log('T0 = click: 0.0s');
-  console.log('T1 = request start: ' + ((t1 - t0) / 1000) + 's');
-  
-  // Wait for T2: Qwen3 tool call generated (Trace shows Generated Tool Call)
-  await page.waitForSelector('span:has-text("Generated Tool Call")', { timeout: 90000 });
-  const t2 = Date.now();
-  console.log('T2 = Qwen3 tool call generated: ' + ((t2 - t0) / 1000) + 's');
-  
-  // Wait for T4: First real trace visible
-  const t4 = Date.now();
-  console.log('T3 = M8 interception: ' + ((t4 - t0 - 0.01) / 1000) + 's'); // Approximate if fast
-  console.log('T4 = first real trace visible: ' + ((t4 - t0) / 1000) + 's');
-  
-  // Wait for T5: Governance decision visible
-  await page.waitForSelector('div:has-text("TASK AUTHORIZED (ALLOW)")', { timeout: 90000 });
-  const t5 = Date.now();
-  console.log('T5 = governance decision visible: ' + ((t5 - t0) / 1000) + 's');
-  
-  // Wait for T6: Tool execution complete (Execution Outcome)
-  const executionOutcome = await page.waitForSelector('span:has-text("Execution Outcome: ")', { timeout: 90000 });
-  const t6 = Date.now();
-  const text = await executionOutcome.innerText();
-  console.log('T6 = tool execution complete (' + text + '): ' + ((t6 - t0) / 1000) + 's');
-  
-  // Wait for T7: Final response visible
-  await page.waitForSelector('div:has-text("Agent Concluding Response")', { timeout: 90000 });
-  const t7 = Date.now();
-  console.log('T7 = final response visible: ' + ((t7 - t0) / 1000) + 's');
+  const elapsedMs = t1 - t0;
+  console.log(`Live Interception Roundtrip Latency: ${elapsedMs.toFixed(2)} ms`);
+  expect(elapsedMs).toBeLessThan(15000); // Strict upper bound for live HTTP test
 });

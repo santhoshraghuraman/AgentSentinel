@@ -3,6 +3,7 @@ import { reportService } from '../api/services';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
+import { formatDateTime } from '../utils/datetime';
 import { 
   Download, 
   AlertTriangle, 
@@ -87,7 +88,7 @@ export function ReportsPage() {
                   </div>
                   <div className="flex items-center gap-2 text-[11px] text-slate-500 font-mono font-bold bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-md">
                     <Calendar className="h-3.5 w-3.5 text-slate-400" />
-                    Generated: {new Date(report.generated_at).toLocaleString()}
+                    Generated: {formatDateTime(report.generated_at)}
                   </div>
                 </div>
               </CardContent>

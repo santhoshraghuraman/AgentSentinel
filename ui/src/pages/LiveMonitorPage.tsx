@@ -26,6 +26,7 @@ import { Badge } from '../components/ui/Badge';
 import { JsonViewer } from '../components/viz/JsonViewer';
 import { EmptyState } from '../components/ui/EmptyState';
 import { cn } from '../utils/cn';
+import { formatTime } from '../utils/datetime';
 
 import { BarChart, Bar, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
@@ -342,7 +343,7 @@ export function LiveMonitorPage() {
 
           <CardContent className="p-6 space-y-6">
             {showRawJson ? (
-              <div className="bg-slate-900 text-slate-100 p-4 rounded-xl text-xs font-mono overflow-auto max-h-[350px]">
+              <div className="bg-code-surface text-slate-800 p-4 rounded-xl text-xs font-mono overflow-auto max-h-[350px] border border-slate-200">
                 <JsonViewer data={selectedEvent} />
               </div>
             ) : (
@@ -525,7 +526,7 @@ const MiniStreamChartTooltip = React.memo(({ active, payload }: any) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
-      <div className="bg-slate-900 text-white text-[10px] py-1 px-2 rounded">
+      <div className="bg-white text-slate-800 text-[10px] py-1 px-2 rounded border border-slate-200 shadow-sm">
         <span className="font-bold">{data.decision}</span>: {data.tool}
       </div>
     );
@@ -578,7 +579,7 @@ const EventTableRow = React.memo(({ evt, isSelected, onSelect }: { evt: any, isS
       )}
     >
       <td className="py-2.5 px-5 text-slate-500 whitespace-nowrap">
-        {new Date(evt.timestamp).toLocaleTimeString()}
+        {formatTime(evt.timestamp)}
       </td>
       <td className="py-2.5 px-4 whitespace-nowrap">
         <span className="bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded text-[11px] font-semibold">

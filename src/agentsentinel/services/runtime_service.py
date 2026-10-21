@@ -24,7 +24,7 @@ TOCTOU preservation:
 import logging
 from typing import Any, Dict, List, Optional, Tuple
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 from src.agentsentinel.models.normalized import (
     ActionCategory,
@@ -105,6 +105,7 @@ class ApiFrameworkAdapter(BaseFrameworkAdapter):
             is_destructive=is_destructive,
             original_tool_name=invocation.tool_name,
             source_dataset="runtime_api",
+            arguments=dict(invocation.frozen_arguments) if invocation.frozen_arguments else {},
         )
 
     def handle_block(self, result: InterceptionResult) -> InterceptionResult:
@@ -207,7 +208,7 @@ class RuntimeService:
             self._session_repo.add({
                 "session_id": request.session_id,
                 "task_id": request.task_id,
-                "created_at": datetime.utcnow(),
+                "created_at": datetime.now(timezone.utc),
                 "status": "active"
             })
             
@@ -219,11 +220,32 @@ class RuntimeService:
 
         # Hydrate historical events from audit log
         historical_events = self._audit_repo.get_by_session(request.session_id)
-        for evt in historical_events:
-            if evt.action:
+        max_seq = 0
+        seen_ids = set()
+        sorted_events = sorted(historical_events, key=lambda e: e.sequence_number or 0)
+
+        with session.acquire_lock():
+            for evt in sorted_events:
+                if not evt.action:
+                    continue
+                if evt.interception_id in seen_ids:
+                    continue
+                seen_ids.add(evt.interception_id)
+
+                if isinstance(evt.timestamp, datetime):
+                    if evt.timestamp.tzinfo is None:
+                        ts_str = evt.timestamp.replace(tzinfo=timezone.utc).isoformat().replace("+00:00", "Z")
+                    else:
+                        ts_str = evt.timestamp.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+                elif hasattr(evt.timestamp, "isoformat"):
+                    ts_str = evt.timestamp.isoformat()
+                    if not ts_str.endswith("Z") and "+" not in ts_str:
+                        ts_str += "Z"
+                else:
+                    ts_str = str(evt.timestamp)
                 normalized_event = NormalizedEvent(
                     id=f"runtime_{evt.interception_id}",
-                    timestamp=evt.timestamp.isoformat() if hasattr(evt.timestamp, 'isoformat') else str(evt.timestamp),
+                    timestamp=ts_str,
                     role=EventRole.TOOL_CALL,
                     content=None,
                     normalized_actions=[evt.action],
@@ -234,9 +256,11 @@ class RuntimeService:
                     execution_state=evt.execution_state,
                     interception_id=evt.interception_id,
                 )
-                # Need to use _events list directly if we don't want to increment seq artificially, 
-                # but append_event uses the event's sequence_number correctly.
                 session.append_event(runtime_event)
+                if evt.sequence_number and evt.sequence_number > max_seq:
+                    max_seq = evt.sequence_number
+
+            session._sequence_counter = max_seq
 
         # Step 4: Construct ValidatedInvocation — immutable binding
         # Arguments are frozen at this point; no re-reading occurs.

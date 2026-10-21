@@ -73,6 +73,7 @@ class LangChainAdapter(BaseFrameworkAdapter):
             is_destructive=is_destructive,
             original_tool_name=invocation.tool_name,
             source_dataset="runtime_langchain",
+            arguments=args,
         )
 
     def handle_block(self, result: InterceptionResult) -> Any:

@@ -5,6 +5,14 @@ export interface InterceptRequest {
   arguments?: Record<string, any>;
 }
 
+export interface AgentRunRequest {
+  prompt: string;
+  session_id: string;
+  task_id: string;
+  document_context?: string;
+  document_filename?: string;
+}
+
 export interface CreateTaskRequest {
   task_id: string;
   task_description?: string;
@@ -138,4 +146,35 @@ export interface SystemDiagnosticsResponse {
   database: DiagnosticDatabaseInfo;
   llm: DiagnosticLLMInfo;
   governance: DiagnosticGovernanceInfo;
+}
+
+export interface MetricsDecisions {
+  allow: number;
+  alert: number;
+  block: number;
+  unknown?: number;
+}
+
+export interface MetricsResponse {
+  total_interceptions: number;
+  decisions: MetricsDecisions;
+  actions_by_category: Record<string, number>;
+}
+
+export interface MetricTimeseriesPoint {
+  time: string;
+  allow: number;
+  alert: number;
+  block: number;
+}
+
+export interface DocumentUploadResponse {
+  filename: string;
+  file_size: number;
+  page_count: number;
+  extracted_text: string;
+  character_count: number;
+  preview: string;
+  warning?: string | null;
+  sandbox_path?: string | null;
 }

@@ -7,6 +7,7 @@ M10 will replace them with persistent database implementations.
 """
 
 import threading
+from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
 from src.agentsentinel.authorization.models import TaskContext
@@ -62,6 +63,14 @@ class InMemoryPolicyRepository(BasePolicyRepository):
             return False
 
 
+def _normalize_utc_dt(dt: Optional[datetime]) -> Optional[datetime]:
+    if dt is None:
+        return None
+    if dt.tzinfo is None:
+        return dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
+
 class InMemoryAuditRepository(BaseAuditRepository):
     """Thread-safe in-memory AuditEvent storage."""
 
@@ -80,7 +89,8 @@ class InMemoryAuditRepository(BaseAuditRepository):
     def get_all(self, since=None) -> List[AuditEvent]:
         with self._lock:
             if since:
-                return [e for e in self._events if e.timestamp >= since]
+                since_utc = _normalize_utc_dt(since)
+                return [e for e in self._events if _normalize_utc_dt(e.timestamp) >= since_utc]
             return list(self._events)
 
     def get_recent(self, limit: int) -> List[AuditEvent]:
@@ -89,7 +99,8 @@ class InMemoryAuditRepository(BaseAuditRepository):
 
     def get_metrics(self, since=None) -> dict:
         with self._lock:
-            events = [e for e in self._events if (not since or e.timestamp >= since)]
+            since_utc = _normalize_utc_dt(since) if since else None
+            events = [e for e in self._events if (not since_utc or _normalize_utc_dt(e.timestamp) >= since_utc)]
             
         total_events = len(events)
         decisions = {"allow": 0, "block": 0, "alert": 0, "unknown": 0}
@@ -111,3 +122,13 @@ class InMemoryAuditRepository(BaseAuditRepository):
             "decisions": decisions,
             "actions_by_category": actions
         }
+
+    def get_timeseries(self, since=None) -> List[tuple]:
+        with self._lock:
+            since_utc = _normalize_utc_dt(since) if since else None
+            return [
+                (e.timestamp, e.decision.value if hasattr(e.decision, "value") else str(e.decision))
+                for e in self._events
+                if (not since_utc or _normalize_utc_dt(e.timestamp) >= since_utc)
+            ]
+

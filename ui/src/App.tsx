@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MainLayout } from './components/layout/MainLayout';
 import { StartupScreen } from './components/layout/StartupScreen';
@@ -38,18 +38,24 @@ export function App() {
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/monitor" element={<LiveMonitorPage />} />
             <Route path="/live" element={<LiveMonitorPage />} />
+            <Route path="/security/live" element={<LiveMonitorPage />} />
             <Route path="/playground" element={<PlaygroundPage />} />
+            <Route path="/agent/playground" element={<PlaygroundPage />} />
             <Route path="/trajectories" element={<TrajectoriesPage />} />
             <Route path="/agents" element={<AgentsPage />} />
             <Route path="/policies" element={<PoliciesPage />} />
+            <Route path="/governance/policies" element={<PoliciesPage />} />
             <Route path="/tasks" element={<TasksPage />} />
             <Route path="/audit" element={<AuditPage />} />
+            <Route path="/security/audit" element={<AuditPage />} />
             <Route path="/decision-explorer" element={<DecisionExplorerPage />} />
             <Route path="/datasets" element={<DatasetsPage />} />
             <Route path="/evaluation" element={<EvaluationPage />} />
             <Route path="/reports" element={<ReportsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/diagnostics" element={<DiagnosticsPage />} />
             <Route path="/system/diagnostics" element={<DiagnosticsPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
         </StartupScreen>

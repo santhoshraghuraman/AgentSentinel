@@ -867,3 +867,165 @@ class TestEngineIsolation:
         import src.agentsentinel.runtime.interceptor as ri
         assert not hasattr(ri, 'GovernanceDecision') or ri.GovernanceDecision is GovernanceDecision
 
+
+# ──────────────────────────────────────────────────────────
+# Adapter Direct Execution Regression (Phase B)
+# ──────────────────────────────────────────────────────────
+
+class TestAdapterDirectExecutionRegression:
+    """
+    Direct regression tests for BaseFrameworkAdapter.execute_tool_call().
+    Ensures the public adapter method functions directly with RuntimeSession
+    without being bypassed or wrapped through a service layer.
+    """
+
+    def test_direct_adapter_allow_executes_once_and_marks_state(self):
+        """ALLOW directly through adapter executes callable once and updates session state."""
+        call_count = 0
+
+        def my_tool(**kwargs):
+            nonlocal call_count
+            call_count += 1
+            return "direct_allow_output"
+
+        interceptor = RuntimeInterceptor()
+        session = _make_session()
+        invocation = ValidatedInvocation(
+            tool_name="read_file",
+            frozen_arguments=(("path", "/safe/file.txt"),),
+            callable_ref=my_tool,
+        )
+        adapter = TestAdapter(interceptor)
+
+        result = adapter.execute_tool_call(session, invocation)
+
+        assert result == "direct_allow_output"
+        assert call_count == 1
+        assert len(session.events) == 1
+        assert session.events[0].execution_state == ExecutionState.EXECUTED
+
+    def test_direct_adapter_block_zero_callable_invocations(self):
+        """BLOCK directly through adapter invokes callable zero times and marks session state BLOCKED."""
+        call_count = 0
+
+        def forbidden_tool(**kwargs):
+            nonlocal call_count
+            call_count += 1
+            return "should_never_run"
+
+        interceptor = RuntimeInterceptor()
+        mock_risk = MagicMock()
+        mock_risk.evaluate.return_value = MagicMock(overall_severity=Severity.HIGH)
+        interceptor._risk_engine = mock_risk
+
+        # TaskContext with no grants -> unauthorized -> HIGH risk + UNAUTHORIZED = M7 BLOCK
+        task_ctx = TaskContext(
+            task_id="t_restrict",
+            task_description="restricted",
+            allowed_capabilities=(),
+            denied_capabilities=(),
+        )
+        session = RuntimeSession(
+            session_id="sess_block",
+            task_context=task_ctx,
+            policies=(),
+        )
+        invocation = ValidatedInvocation(
+            tool_name="web_tool",
+            frozen_arguments=(),
+            callable_ref=forbidden_tool,
+        )
+
+        def normalize_web(inv):
+            return NormalizedAction(
+                normalized_name="web_action",
+                category=ActionCategory.WEB_REQUEST,
+                operation="get",
+                resource="https://malicious.example.com",
+                is_mutating=False,
+                is_destructive=False,
+                original_tool_name="web_tool",
+                source_dataset="runtime",
+            )
+
+        adapter = TestAdapter(interceptor, normalize_fn=normalize_web)
+
+        result = adapter.execute_tool_call(session, invocation)
+
+        assert "BLOCKED" in result
+        assert call_count == 0
+        assert len(session.events) == 1
+        assert session.events[0].execution_state == ExecutionState.BLOCKED
+
+    def test_direct_adapter_alert_executes_once_and_marks_state(self):
+        """ALERT directly through adapter executes callable once and updates session state."""
+        call_count = 0
+
+        def alert_tool(**kwargs):
+            nonlocal call_count
+            call_count += 1
+            return "direct_alert_output"
+
+        interceptor = RuntimeInterceptor()
+        mock_risk = MagicMock()
+        mock_risk.evaluate.return_value = MagicMock(overall_severity=Severity.HIGH)
+        interceptor._risk_engine = mock_risk
+
+        session = _make_session()
+        invocation = ValidatedInvocation(
+            tool_name="read_file",
+            frozen_arguments=(("path", "/monitored/path"),),
+            callable_ref=alert_tool,
+        )
+        adapter = TestAdapter(interceptor)
+
+        result = adapter.execute_tool_call(session, invocation)
+
+        assert result == "direct_alert_output"
+        assert call_count == 1
+        assert len(session.events) == 1
+        assert session.events[0].execution_state == ExecutionState.EXECUTED
+
+    def test_direct_adapter_normalization_failure_blocks_with_zero_invocations(self):
+        """Normalization failure directly through adapter blocks with zero tool executions."""
+        call_count = 0
+
+        def unreachable_tool(**kwargs):
+            nonlocal call_count
+            call_count += 1
+            return "never"
+
+        interceptor = RuntimeInterceptor()
+        session = _make_session()
+        invocation = ValidatedInvocation(
+            tool_name="malformed_tool",
+            frozen_arguments=(),
+            callable_ref=unreachable_tool,
+        )
+        adapter = TestAdapter(interceptor, normalize_fn=lambda inv: None)
+
+        result = adapter.execute_tool_call(session, invocation)
+
+        assert "BLOCKED" in result
+        assert call_count == 0
+
+    def test_direct_adapter_execution_failure_propagates_and_marks_state(self):
+        """Tool failure directly through adapter propagates exception and marks session EXECUTION_FAILED."""
+        def failing_tool(**kwargs):
+            raise RuntimeError("Underlying driver failure")
+
+        interceptor = RuntimeInterceptor()
+        session = _make_session()
+        invocation = ValidatedInvocation(
+            tool_name="read_file",
+            frozen_arguments=(("path", "/test"),),
+            callable_ref=failing_tool,
+        )
+        adapter = TestAdapter(interceptor)
+
+        with pytest.raises(RuntimeError, match="Underlying driver failure"):
+            adapter.execute_tool_call(session, invocation)
+
+        assert len(session.events) == 1
+        assert session.events[0].execution_state == ExecutionState.EXECUTION_FAILED
+

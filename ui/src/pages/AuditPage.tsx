@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { auditService } from '../api/services';
 import { Card, CardContent } from '../components/ui/Card';
@@ -6,13 +7,19 @@ import { Badge } from '../components/ui/Badge';
 import { Input } from '../components/ui/Input';
 import { EmptyState } from '../components/ui/EmptyState';
 import { JsonViewer } from '../components/viz/JsonViewer';
-import { Database, Search, Filter, ChevronDown, ChevronUp, Clock, Terminal, Activity } from 'lucide-react';
+import { Database, Search, Filter, ChevronDown, ChevronUp, Clock, Terminal, Activity, Link2, AlertTriangle } from 'lucide-react';
 import { cn } from '../utils/cn';
+import { formatDateTime } from '../utils/datetime';
 
 export function AuditPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sessionParam = searchParams.get('session')?.trim() || null;
+  const interceptionParam = searchParams.get('interception')?.trim() || null;
+
   const [filterDecision, setFilterDecision] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [isolateCorrelated, setIsolateCorrelated] = useState<boolean>(false);
 
   const { data: auditEvents, isLoading, error } = useQuery({
     queryKey: ['auditLogsAll'],
@@ -20,8 +27,52 @@ export function AuditPage() {
     refetchInterval: 5000,
   });
 
+  // Evaluate correlation state strictly from both identifiers
+  const correlation = useMemo<{
+    status: 'none' | 'incomplete' | 'unmatched' | 'matched';
+    event: any | null;
+  }>(() => {
+    const hasSession = Boolean(sessionParam);
+    const hasInterception = Boolean(interceptionParam);
+
+    if (!hasSession && !hasInterception) {
+      return { status: 'none', event: null };
+    }
+
+    if (!hasSession || !hasInterception) {
+      return { status: 'incomplete', event: null };
+    }
+
+    if (!auditEvents) {
+      return { status: 'none', event: null };
+    }
+
+    // Validate that interception belongs to the specified session
+    const matched = auditEvents.find(
+      (e) => e.session_id === sessionParam && e.interception_id === interceptionParam
+    );
+
+    if (matched) {
+      return { status: 'matched', event: matched };
+    }
+
+    return { status: 'unmatched', event: null };
+  }, [auditEvents, sessionParam, interceptionParam]);
+
+  // Auto-expand and select the exact matched event
+  useEffect(() => {
+    if (correlation.status === 'matched' && correlation.event) {
+      setExpandedId(correlation.event.interception_id);
+    }
+  }, [correlation.status, correlation.event]);
+
   const filteredEvents = useMemo(() => {
     return (auditEvents || []).filter((e) => {
+      if (isolateCorrelated && correlation.status === 'matched' && correlation.event) {
+        if (e.interception_id !== correlation.event.interception_id) {
+          return false;
+        }
+      }
       const matchesDecision = filterDecision === 'ALL' || e.decision.toUpperCase() === filterDecision;
       const query = searchQuery.toLowerCase();
       const matchesSearch = 
@@ -29,10 +80,11 @@ export function AuditPage() {
         (e.interception_id || '').toLowerCase().includes(query) ||
         (e.session_id || '').toLowerCase().includes(query) ||
         (e.task_id || '').toLowerCase().includes(query) ||
-        (e.tool_name || '').toLowerCase().includes(query);
+        (e.tool_name || '').toLowerCase().includes(query) ||
+        (e.action?.normalized_name || '').toLowerCase().includes(query);
       return matchesDecision && matchesSearch;
     });
-  }, [auditEvents, filterDecision, searchQuery]);
+  }, [auditEvents, filterDecision, searchQuery, isolateCorrelated, correlation.status, correlation.event]);
 
   const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
@@ -59,7 +111,7 @@ export function AuditPage() {
             <span>Audit Logs</span>
           </h1>
           <p className="text-xs text-slate-500 mt-1">
-            Immutable cryptographic records of all runtime interceptions, tool calls, and governance decisions.
+            Durable SQLite audit records of runtime interceptions, tool calls, and governance decisions, correlated by interception ID.
           </p>
         </div>
       </div>
@@ -92,6 +144,88 @@ export function AuditPage() {
         </div>
       </div>
 
+      {/* Correlation Notification Banners */}
+      {correlation.status === 'matched' && (
+        <div 
+          data-testid="audit-correlation-banner"
+          className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-blue-50 border border-blue-200 text-xs font-mono text-blue-900 shadow-xs"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+            <div className="flex items-center gap-2">
+              <Link2 className="h-4 w-4 text-blue-600 shrink-0" />
+              <span>
+                <strong>CORRELATED AUDIT RECORD:</strong> Session <code className="bg-blue-100 px-1 py-0.5 rounded font-bold text-blue-800">{sessionParam}</code> &middot; Interception <code className="bg-blue-100 px-1 py-0.5 rounded font-bold text-blue-800">{interceptionParam}</code>
+              </span>
+            </div>
+            <span className="text-[11px] font-sans text-blue-700">
+              {isolateCorrelated ? '(Showing only correlated record)' : `(Correlated record highlighted below · ${totalCount} total ledger records)`}
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              data-testid="toggle-isolate-correlated"
+              onClick={() => setIsolateCorrelated(!isolateCorrelated)}
+              className="text-[11px] font-medium text-blue-700 hover:text-blue-900 underline font-sans cursor-pointer"
+            >
+              {isolateCorrelated ? 'Show All Records' : 'Isolate Correlated Record'}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setIsolateCorrelated(false);
+                setSearchParams({});
+              }}
+              className="self-start sm:self-auto text-[11px] font-medium text-blue-700 hover:text-blue-900 underline font-sans cursor-pointer"
+            >
+              Clear Correlation Filter
+            </button>
+          </div>
+        </div>
+      )}
+
+      {correlation.status === 'unmatched' && (
+        <div 
+          data-testid="audit-unmatched-banner"
+          className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs font-mono text-amber-900 shadow-xs"
+        >
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="h-4 w-4 text-amber-600 shrink-0" />
+            <span>
+              <strong>Correlation Notice:</strong> No audit record found matching session <code className="bg-amber-100 px-1 py-0.5 rounded font-bold">{sessionParam}</code> and interception <code className="bg-amber-100 px-1 py-0.5 rounded font-bold">{interceptionParam}</code>. Interception ID does not belong to specified session or does not exist.
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setSearchParams({})}
+            className="self-start sm:self-auto text-[11px] font-medium text-amber-700 hover:text-amber-900 underline font-sans cursor-pointer"
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
+
+      {correlation.status === 'incomplete' && (
+        <div 
+          data-testid="audit-incomplete-banner"
+          className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs font-mono text-amber-900 shadow-xs"
+        >
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="h-4 w-4 text-amber-600 shrink-0" />
+            <span>
+              <strong>Correlation Notice:</strong> Missing parameter — both <code className="bg-amber-100 px-1 py-0.5 rounded font-bold">session</code> and <code className="bg-amber-100 px-1 py-0.5 rounded font-bold">interception</code> query parameters are required for correlation.
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setSearchParams({})}
+            className="self-start sm:self-auto text-[11px] font-medium text-amber-700 hover:text-amber-900 underline font-sans cursor-pointer"
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
+
       {/* Main List */}
       <div className="flex-1 overflow-y-auto pr-1">
         {isLoading ? (
@@ -116,15 +250,20 @@ export function AuditPage() {
               const isExpanded = expandedId === e.interception_id;
               const isBlock = e.decision.toLowerCase() === 'block';
               const isAlert = e.decision.toLowerCase() === 'alert';
+              const isCorrelated = correlation.status === 'matched' && correlation.event?.interception_id === e.interception_id;
 
               return (
                 <Card 
                   key={e.interception_id} 
+                  data-testid={`audit-card-${e.interception_id}`}
+                  data-correlated={isCorrelated ? "true" : undefined}
                   className={cn(
                     "overflow-hidden border rounded-xl motion-safe:transition-colors bg-white hover:shadow-xs cursor-pointer",
-                    isBlock ? "border-rose-200/90 hover:border-rose-300" :
-                    isAlert ? "border-amber-200/90 hover:border-amber-300" :
-                    "border-emerald-200/90 hover:border-emerald-300"
+                    isCorrelated
+                      ? "ring-2 ring-blue-500 border-blue-400 shadow-md bg-blue-50/20"
+                      : isBlock ? "border-rose-200/90 hover:border-rose-300" :
+                        isAlert ? "border-amber-200/90 hover:border-amber-300" :
+                        "border-emerald-200/90 hover:border-emerald-300"
                   )}
                   onClick={() => toggleExpand(e.interception_id)}
                 >
@@ -145,11 +284,19 @@ export function AuditPage() {
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="font-bold text-sm font-mono text-slate-900 flex items-center gap-1.5">
                             <Terminal className="h-3.5 w-3.5 text-slate-400" />
-                            {e.tool_name}
+                            {e.tool_name || e.action?.normalized_name || 'unknown'}
                           </span>
                           <span className="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px] font-bold border border-slate-200">
                             {e.execution_state}
                           </span>
+                          {isCorrelated && (
+                            <span 
+                              data-testid="correlated-badge"
+                              className="px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-mono text-[10px] font-bold border border-blue-300 uppercase tracking-wider"
+                            >
+                              CORRELATED
+                            </span>
+                          )}
                         </div>
                         <p className="text-[11px] text-slate-500 font-mono mt-1 flex items-center gap-2">
                           <span title={e.session_id}>Session: {e.session_id.substring(0,8)}...</span>
@@ -162,7 +309,7 @@ export function AuditPage() {
                     <div className="flex items-center gap-4 text-[11px] font-mono text-slate-500 font-semibold">
                       <span className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
-                        {new Date(e.timestamp).toLocaleString()}
+                        {formatDateTime(e.timestamp)}
                       </span>
                       {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                     </div>

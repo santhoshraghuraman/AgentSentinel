@@ -21,6 +21,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { cn } from '../utils/cn';
+import { formatTime } from '../utils/datetime';
 
 const getStatusBadge = (status: string, hasBlock: boolean = false) => {
   const s = status.toUpperCase();
@@ -363,7 +364,7 @@ export function AgentsPage() {
                   <div className="flex flex-col items-end gap-1.5">
                     {getStatusBadge(selectedSession.status, (selectedSession.verdict_counts?.['BLOCK'] || 0) > 0)}
                     <span className="text-[11px] font-mono text-slate-400">
-                      Started: {new Date(selectedSession.created_at).toLocaleTimeString()}
+                      Started: {formatTime(selectedSession.created_at)}
                     </span>
                   </div>
                 </div>
@@ -507,7 +508,7 @@ export function AgentsPage() {
                             </div>
 
                             <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500 pt-1 border-t border-slate-100">
-                              <span>{new Date(evt.timestamp).toLocaleTimeString()}</span>
+                              <span>{formatTime(evt.timestamp)}</span>
                               <span>Risk: {typeof evt.action_record?.risk_score === 'number' ? evt.action_record.risk_score : 'N/A'}</span>
                               {evt.action && <span>Category: {evt.action.category}</span>}
                               {evt.action_record?.auth_status && <span>Auth: {evt.action_record.auth_status}</span>}
@@ -594,7 +595,7 @@ const SessionCard = React.memo(({ session: s, isSelected, onClick, getStatusBadg
           <span className="text-amber-700 font-semibold">ALR: {alert}</span>
           <span className="text-rose-700 font-semibold">BLK: {block}</span>
         </div>
-        <span>{new Date(s.created_at).toLocaleTimeString()}</span>
+        <span>{formatTime(s.created_at)}</span>
       </div>
     </Card>
   );

@@ -12,7 +12,7 @@ Architecture Separation:
 
 import json
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -202,7 +202,7 @@ def train_and_evaluate(
             "unsafe_samples": unsafe_samples,
         },
         "feature_importances": feature_importances,
-        "trained_at": datetime.utcnow().isoformat(),
+        "trained_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "random_seed": random_state,
     }
 

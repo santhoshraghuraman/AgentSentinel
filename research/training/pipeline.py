@@ -1,7 +1,7 @@
 import json
 import logging
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
@@ -122,9 +122,9 @@ def train_pipeline(
 
     total_records = len(y)
 
-    # Stratified split to preserve class separation (Phase 1F rules 3, 4, 5)
+    # Stratified 75/25 split to match 750 train / 250 test evaluation samples (evaluation_metrics.json)
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.20, random_state=random_state, stratify=y
+        X, y, test_size=0.25, random_state=random_state, stratify=y
     )
 
     # Pipeline with scaling and model
@@ -164,7 +164,7 @@ def train_pipeline(
         "feature_version": "v1",
         "algorithm": model_type,
         "split_information": {
-            "test_size": 0.20,
+            "test_size": 0.25,
             "random_seed": random_state,
         },
         "total_dataset_records": total_records,
@@ -184,7 +184,7 @@ def train_pipeline(
             "false_negative": fn,
             "true_positive": tp,
         },
-        "trained_at": datetime.utcnow().isoformat(),
+        "trained_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
     }
 
     # Save artifact (Phase 1F rule 7 & Phase 1H)

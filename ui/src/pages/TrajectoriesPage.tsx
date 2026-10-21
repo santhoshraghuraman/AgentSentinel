@@ -7,6 +7,7 @@ import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Badge } from '../components/ui/Badge';
 import { EmptyState } from '../components/ui/EmptyState';
+import { SecurityTrajectoryMap } from '../components/viz/SecurityTrajectoryMap';
 import { 
   Search, 
   Shield, 
@@ -17,9 +18,13 @@ import {
   Copy, 
   Check, 
   Layers,
-  Activity
+  Activity,
+  Network,
+  List,
+  FileText
 } from 'lucide-react';
 import { cn } from '../utils/cn';
+import { formatTime } from '../utils/datetime';
 
 export function TrajectoriesPage() {
   const [sessionSearch, setSessionSearch] = useState('');
@@ -27,6 +32,8 @@ export function TrajectoriesPage() {
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [decisionFilter, setDecisionFilter] = useState<'ALL' | 'ALLOW' | 'ALERT' | 'BLOCK'>('ALL');
   const [hasCopied, setHasCopied] = useState(false);
+  /** Phase 4C: view mode toggle — 'map' shows SecurityTrajectoryMap, 'trace' shows legacy timeline */
+  const [viewMode, setViewMode] = useState<'map' | 'trace'>('map');
 
   // Fetch available sessions for quick selector
   const { data: availableSessions } = useQuery({
@@ -365,7 +372,7 @@ export function TrajectoriesPage() {
             variant={decisionFilter === 'ALL' ? 'default' : 'ghost'}
             size="sm"
             onClick={() => setDecisionFilter('ALL')}
-            className={cn("h-7 text-[11px] font-mono px-2.5", decisionFilter === 'ALL' ? "bg-slate-900 text-white" : "text-slate-600")}
+            className={cn("h-7 text-[11px] font-mono px-2.5", decisionFilter === 'ALL' ? "bg-slate-800 text-white" : "text-slate-600")}
           >
             All ({events.length})
           </Button>
@@ -393,6 +400,38 @@ export function TrajectoriesPage() {
           >
             Block ({blockCount})
           </Button>
+
+          {/* Phase 4C: view mode toggle — Map vs Trace */}
+          <div className="flex items-center gap-0.5 ml-2 border-l border-slate-200 pl-2">
+            <Button
+              variant={viewMode === 'map' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('map')}
+              className={cn(
+                "h-7 text-[11px] font-mono px-2 gap-1",
+                viewMode === 'map' ? "bg-blue-700 text-white" : "text-slate-500"
+              )}
+              aria-label="Switch to Security Trajectory Map view"
+              aria-pressed={viewMode === 'map'}
+            >
+              <Network className="h-3 w-3" />
+              Map
+            </Button>
+            <Button
+              variant={viewMode === 'trace' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('trace')}
+              className={cn(
+                "h-7 text-[11px] font-mono px-2 gap-1",
+                viewMode === 'trace' ? "bg-slate-800 text-white" : "text-slate-500"
+              )}
+              aria-label="Switch to Trace view"
+              aria-pressed={viewMode === 'trace'}
+            >
+              <List className="h-3 w-3" />
+              Trace
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -420,51 +459,66 @@ export function TrajectoriesPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-          {/* Left 7 Cols: Chronological Trajectory Execution Trace */}
+          {/* Left 7 Cols: Trajectory view — Map or Trace depending on viewMode */}
           <div className="lg:col-span-7 space-y-4">
             <div className="flex items-center justify-between pb-1">
               <h3 className="text-xs font-bold font-mono uppercase text-slate-500 tracking-wider flex items-center gap-2">
-                <Layers className="h-4 w-4 text-blue-600" />
-                Trajectory Execution Trace
+                {viewMode === 'map'
+                  ? <><Network className="h-4 w-4 text-blue-600" />Security Trajectory Map</>
+                  : <><Layers className="h-4 w-4 text-blue-600" />Trajectory Execution Trace</>
+                }
               </h3>
               <span className="text-[11px] font-mono text-slate-400">
                 {filteredEvents.length} Discrete Operations
               </span>
             </div>
 
-            {/* Timeline Items */}
-            <div className="relative pl-6 border-l-2 border-slate-200 space-y-4">
-              {filteredEvents.map((evt) => (
-                <TimelineEventCard 
-                  key={evt.interception_id}
-                  evt={evt}
-                  isSelected={evt.interception_id === selectedEventId}
-                  onSelect={setSelectedEventId}
+            {viewMode === 'map' ? (
+              /* Phase 4C: Security Trajectory Map view */
+              <Card className="p-4 border-slate-200 shadow-xs bg-white overflow-y-auto max-h-[72vh]">
+                <SecurityTrajectoryMap
+                  events={filteredEvents}
+                  selectedEventId={selectedEventId}
+                  onSelectEvent={setSelectedEventId}
                 />
-              ))}
-            </div>
+              </Card>
+            ) : (
+              /* Trace view: existing timeline list */
+              <>
+                <div className="relative pl-6 border-l-2 border-slate-200 space-y-4">
+                  {filteredEvents.map((evt) => (
+                    <TimelineEventCard 
+                      key={evt.interception_id}
+                      evt={evt}
+                      isSelected={evt.interception_id === selectedEventId}
+                      onSelect={setSelectedEventId}
+                    />
+                  ))}
+                </div>
 
-            {/* Behavioral Risk Profile Sparkline */}
-            <Card className="p-4 border-slate-200 shadow-xs bg-white mt-6">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                <span className="text-xs font-mono font-bold uppercase text-slate-500 tracking-wider">
-                  Behavioral Drift Profile Across Trajectory
-                </span>
-                <span className="text-[11px] font-mono text-slate-400">
-                  Risk Metric per Sequential Step
-                </span>
-              </div>
-              <div className="flex items-end gap-2 h-16 pt-3 px-2">
-                {events.map((evt) => (
-                  <SparklineNode 
-                    key={evt.interception_id}
-                    evt={evt}
-                    isSelected={evt.interception_id === selectedEventId}
-                    onSelect={setSelectedEventId}
-                  />
-                ))}
-              </div>
-            </Card>
+                {/* Behavioral Risk Profile Sparkline */}
+                <Card className="p-4 border-slate-200 shadow-xs bg-white mt-6">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                    <span className="text-xs font-mono font-bold uppercase text-slate-500 tracking-wider">
+                      Behavioral Drift Profile Across Trajectory
+                    </span>
+                    <span className="text-[11px] font-mono text-slate-400">
+                      Risk Metric per Sequential Step
+                    </span>
+                  </div>
+                  <div className="flex items-end gap-2 h-16 pt-3 px-2">
+                    {events.map((evt) => (
+                      <SparklineNode 
+                        key={evt.interception_id}
+                        evt={evt}
+                        isSelected={evt.interception_id === selectedEventId}
+                        onSelect={setSelectedEventId}
+                      />
+                    ))}
+                  </div>
+                </Card>
+              </>
+            )}
           </div>
 
           {/* Right 5 Cols: Deep Inspection Drawer */}
@@ -508,7 +562,7 @@ export function TrajectoriesPage() {
                         {hasCopied ? 'Copied' : 'Copy'}
                       </Button>
                     </div>
-                    <pre className="p-3 bg-slate-900 text-slate-100 rounded-lg text-[11px] font-mono overflow-x-auto max-h-48">
+                    <pre className="p-3 bg-code-surface text-slate-800 rounded-lg text-[11px] font-mono overflow-x-auto max-h-48 border border-slate-200">
                       {JSON.stringify({
                         tool: selectedEvent.tool_name,
                         arguments: selectedEvent.arguments || {},
@@ -518,32 +572,51 @@ export function TrajectoriesPage() {
                     </pre>
                   </div>
 
-                  {/* Behavioral Feature Breakdown */}
-                  <div>
-                    <span className="text-slate-500 font-semibold uppercase text-[11px] font-mono block mb-2">
-                      BEHAVIORAL FEATURE VECTOR BREAKDOWN
-                    </span>
-                    {selectedEvent.action_record?.features && Object.keys(selectedEvent.action_record.features).length > 0 ? (
-                      <div className="space-y-2 max-h-36 overflow-y-auto pr-1">
-                        {Object.entries(selectedEvent.action_record.features).slice(0, 5).map(([name, val]) => {
-                          const num = typeof val === 'number' ? val : 0;
-                          return (
-                            <div key={name} className="space-y-1 text-[11px] font-mono">
-                              <div className="flex justify-between">
-                                <span className="text-slate-600">{name}</span>
-                                <span className="font-bold text-slate-800">{typeof val === 'number' ? val.toFixed(3) : String(val)}</span>
+                    {/* Behavioral Feature Breakdown (M4) */}
+                    <div>
+                      <span className="text-slate-500 font-semibold uppercase text-[11px] font-mono block mb-2">
+                        BEHAVIORAL FEATURE VECTOR BREAKDOWN
+                      </span>
+                      {selectedEvent.action_record?.features && Object.keys(selectedEvent.action_record.features).length > 0 ? (
+                        <div className="space-y-2 max-h-36 overflow-y-auto pr-1">
+                          {Object.entries(selectedEvent.action_record.features).slice(0, 6).map(([name, val]) => {
+                            const isTime = name.includes('time') || name.includes('latency');
+                            const isCount = (name.includes('count') || name.includes('repeated') || name.includes('transitions')) && typeof val === 'number';
+                            const isProb = typeof val === 'number' && (name.includes('prob') || name.includes('ratio') || (val >= 0 && val <= 1 && (name.includes('score') || name.includes('risk'))));
+                            const num = typeof val === 'number' ? val : 0;
+                            const displayVal = typeof val === 'number'
+                              ? isTime
+                                ? (val < 1 ? `${(val * 1000).toFixed(0)} ms` : `${val.toFixed(2)} s`)
+                                : isProb
+                                  ? val.toFixed(4)
+                                  : Number.isInteger(val) ? `${val}` : val.toFixed(3)
+                              : typeof val === 'object' && val !== null
+                                ? Object.entries(val).map(([k, v]) => `${k}: ${v}`).join(', ') || '{}'
+                                : String(val ?? 'Unavailable');
+                            const unitLabel = isCount ? 'count' : undefined;
+
+                            return (
+                              <div key={name} className="space-y-1 text-[11px] font-mono">
+                                <div className="flex justify-between items-center">
+                                  <span className="text-slate-600 truncate max-w-[180px]" title={name}>{name}</span>
+                                  <div className="flex items-center gap-1 font-bold text-slate-800">
+                                    <span>{displayVal}</span>
+                                    {unitLabel && <span className="text-[10px] text-slate-400 font-normal">({unitLabel})</span>}
+                                  </div>
+                                </div>
+                                {isProb && (
+                                  <div className="w-full bg-slate-100 rounded-full h-1 overflow-hidden">
+                                    <div 
+                                      className={cn("h-1 rounded-full", num > 0.7 ? "bg-rose-600" : num > 0.4 ? "bg-amber-500" : "bg-blue-600")}
+                                      style={{ width: `${Math.min(100, Math.max(0, num * 100))}%` }}
+                                    />
+                                  </div>
+                                )}
                               </div>
-                              <div className="w-full bg-slate-100 rounded-full h-1 overflow-hidden">
-                                <div 
-                                  className={cn("h-1 rounded-full", num > 0.7 ? "bg-rose-600" : num > 0.4 ? "bg-amber-500" : "bg-blue-600")}
-                                  style={{ width: `${Math.min(100, Math.max(5, num * 100))}%` }}
-                                />
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    ) : (
+                            );
+                          })}
+                        </div>
+                      ) : (
                       <div className="p-2.5 rounded bg-slate-50 border border-slate-100 font-mono text-[11px] text-slate-500 flex justify-between">
                         <span>ML Risk Probability:</span>
                         <span className="font-bold text-slate-800">
@@ -574,11 +647,19 @@ export function TrajectoriesPage() {
                   {/* Action Buttons */}
                   <div className="space-y-2 pt-2 border-t border-slate-100">
                     <Link
-                      to={`/decision-explorer`}
+                      to={`/decision-explorer?session=${encodeURIComponent(selectedEvent.session_id)}&interception=${encodeURIComponent(selectedEvent.interception_id)}&stage=M1_M2`}
                       className="w-full inline-flex items-center justify-center h-8 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-xs gap-1.5 motion-safe:transition-colors"
                     >
                       <span>Deep Dive in Decision Explorer</span>
                       <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+
+                    <Link
+                      to={`/audit?session=${encodeURIComponent(selectedEvent.session_id)}&interception=${encodeURIComponent(selectedEvent.interception_id)}`}
+                      className="w-full inline-flex items-center justify-center h-8 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 shadow-xs gap-1.5 motion-safe:transition-colors"
+                    >
+                      <FileText className="h-3.5 w-3.5 text-slate-500" />
+                      <span>View in Audit Ledger</span>
                     </Link>
 
                     <Button
@@ -641,7 +722,7 @@ const TimelineEventCard = React.memo(({ evt, isSelected, onSelect }: { evt: any,
               STEP {String(evt.sequence_number).padStart(2, '0')}
             </span>
             <span className="text-[11px] text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">
-              {new Date(evt.timestamp).toLocaleTimeString()}
+              {formatTime(evt.timestamp)}
             </span>
             <span className="font-bold text-slate-900 truncate">
               {evt.tool_name || evt.action?.normalized_name || 'unknown_tool'}

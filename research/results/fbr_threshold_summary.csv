@@ -1,0 +1,8 @@
+threshold,severity_label,n_safe,n_unsafe,n_total,true_negatives,false_positives,false_negatives,true_positives,fpr_safe_partition,fnr_unsafe_partition,accuracy,wilson_ci_95_lower,wilson_ci_95_upper,safe_flagged_count,safe_correct_count,unsafe_caught_count,unsafe_missed_count
+0.2,below LOW,101,99,200,26,75,5,94,0.742574,0.050505,0.6,0.649523,0.817849,75,26,94,5
+0.3,below LOW,101,99,200,53,48,20,79,0.475248,0.20202,0.66,0.380557,0.571752,48,53,79,20
+0.4,LOW,101,99,200,71,30,32,67,0.29703,0.323232,0.69,0.216682,0.392252,30,71,67,32
+0.5,ESTIMATOR DEFAULT (0.50),101,99,200,83,18,35,64,0.178218,0.353535,0.735,0.11581,0.264207,18,83,64,35
+0.55,MEDIUM,101,99,200,83,18,37,62,0.178218,0.373737,0.725,0.11581,0.264207,18,83,62,37
+0.7,HIGH,101,99,200,91,10,48,51,0.09901,0.484848,0.71,0.054672,0.172733,10,91,51,48
+0.85,CRITICAL,101,99,200,94,7,55,44,0.069307,0.555556,0.69,0.033975,0.136202,7,94,44,55

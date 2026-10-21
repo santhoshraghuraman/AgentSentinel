@@ -9,7 +9,8 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
+import { parseUtcDate } from '../../utils/datetime';
 
 export interface TimelineDataPoint {
   time: string;
@@ -25,6 +26,22 @@ interface GovernanceTimelineChartProps {
 }
 
 export const GovernanceTimelineChart = React.memo(function GovernanceTimelineChart({ data, bucketSize, isLoading }: GovernanceTimelineChartProps) {
+  // Format the X-axis differently based on bucket size (called unconditionally before early returns)
+  const formatXAxis = useCallback((tickItem: string) => {
+    try {
+      const date = parseUtcDate(tickItem);
+      if (bucketSize >= 3600) {
+        return format(date, 'HH:mm');
+      } else if (bucketSize >= 60) {
+        return format(date, 'HH:mm');
+      } else {
+        return format(date, 'HH:mm:ss');
+      }
+    } catch {
+      return tickItem;
+    }
+  }, [bucketSize]);
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-full w-full text-slate-400">
@@ -55,22 +72,6 @@ export const GovernanceTimelineChart = React.memo(function GovernanceTimelineCha
       </div>
     );
   }
-
-  // Format the X-axis differently based on bucket size
-  const formatXAxis = useCallback((tickItem: string) => {
-    try {
-      const date = parseISO(tickItem);
-      if (bucketSize >= 3600) {
-        return format(date, 'HH:mm');
-      } else if (bucketSize >= 60) {
-        return format(date, 'HH:mm');
-      } else {
-        return format(date, 'HH:mm:ss');
-      }
-    } catch {
-      return tickItem;
-    }
-  }, [bucketSize]);
 
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -113,26 +114,27 @@ export const GovernanceTimelineChart = React.memo(function GovernanceTimelineCha
 
 const CustomTooltip = React.memo(({ active, payload, label, bucketSize }: any) => {
   if (active && payload && payload.length) {
+    let timeStr = label;
     try {
-      const date = parseISO(label);
-      const timeStr = bucketSize >= 3600 ? format(date, 'MMM d, HH:mm') : format(date, 'HH:mm:ss');
-      return (
-        <div className="bg-white p-3 border border-slate-200 shadow-lg rounded-md text-sm">
-          <p className="font-semibold text-slate-700 mb-2">{timeStr}</p>
-          {payload.map((entry: any, index: number) => (
-            <div key={index} className="flex items-center justify-between gap-4 mb-1">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: entry.color }} />
-                <span className="text-slate-600 capitalize">{entry.name}</span>
-              </div>
-              <span className="font-medium text-slate-900">{entry.value}</span>
-            </div>
-          ))}
-        </div>
-      );
+      const date = parseUtcDate(label);
+      timeStr = bucketSize >= 3600 ? format(date, 'MMM d, HH:mm') : format(date, 'HH:mm:ss');
     } catch {
-      return null;
+      timeStr = label;
     }
+    return (
+      <div className="bg-white p-3 border border-slate-200 shadow-lg rounded-md text-sm">
+        <p className="font-semibold text-slate-700 mb-2">{timeStr}</p>
+        {payload.map((entry: any, index: number) => (
+          <div key={index} className="flex items-center justify-between gap-4 mb-1">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: entry.color }} />
+              <span className="text-slate-600 capitalize">{entry.name}</span>
+            </div>
+            <span className="font-medium text-slate-900">{entry.value}</span>
+          </div>
+        ))}
+      </div>
+    );
   }
   return null;
 });

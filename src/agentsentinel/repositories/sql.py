@@ -5,6 +5,7 @@ SQLAlchemy implementations of the repository interfaces.
 """
 
 import logging
+from datetime import datetime, timezone
 from typing import List, Optional, Any, Dict
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
@@ -206,19 +207,22 @@ class SQLAuditRepository(BaseAuditRepository):
         blocking execution that already occurred in M8).
         """
         try:
+            ts = event.timestamp
+            if ts is not None and hasattr(ts, "tzinfo") and ts.tzinfo is not None:
+                ts = ts.astimezone(timezone.utc).replace(tzinfo=None)
             model = AuditEventModel(
                 interception_id=event.interception_id,
                 session_id=event.session_id,
                 sequence_number=event.sequence_number,
-                timestamp=event.timestamp,
+                timestamp=ts,
                 decision=event.decision.value,
                 execution_state=event.execution_state.value,
                 action_payload=self._serialize_action(event.action) if event.action else None,
                 action_record=self._serialize_action_record(event.action_record) if event.action_record else None,
                 error_message=event.error_message,
                 task_id=event.task_id,
-                tool_name=event.tool_name,
-                arguments=event.arguments,
+                tool_name=event.tool_name or (event.action.original_tool_name if event.action and hasattr(event.action, 'original_tool_name') and event.action.original_tool_name else (event.action.normalized_name if event.action else "")),
+                arguments=event.arguments if event.arguments is not None else (event.action.arguments if event.action and hasattr(event.action, 'arguments') else {}),
                 execution_result=event.execution_result
             )
             self._session.add(model)
@@ -235,6 +239,8 @@ class SQLAuditRepository(BaseAuditRepository):
     def get_all(self, since=None) -> List[AuditEvent]:
         query = self._session.query(AuditEventModel).order_by(AuditEventModel.sequence_number)
         if since:
+            if hasattr(since, "tzinfo") and since.tzinfo is not None:
+                since = since.astimezone(timezone.utc).replace(tzinfo=None)
             query = query.filter(AuditEventModel.timestamp >= since)
         models = query.all()
         return [self._to_domain(m) for m in models]
@@ -246,6 +252,8 @@ class SQLAuditRepository(BaseAuditRepository):
     def get_metrics(self, since=None) -> dict:
         query = self._session.query(AuditEventModel.decision, AuditEventModel.action_payload)
         if since:
+            if hasattr(since, "tzinfo") and since.tzinfo is not None:
+                since = since.astimezone(timezone.utc).replace(tzinfo=None)
             query = query.filter(AuditEventModel.timestamp >= since)
             
         results = query.all()
@@ -274,6 +282,8 @@ class SQLAuditRepository(BaseAuditRepository):
     def get_timeseries(self, since=None) -> List[tuple]:
         query = self._session.query(AuditEventModel.timestamp, AuditEventModel.decision)
         if since:
+            if hasattr(since, "tzinfo") and since.tzinfo is not None:
+                since = since.astimezone(timezone.utc).replace(tzinfo=None)
             query = query.filter(AuditEventModel.timestamp >= since)
         return query.all()
 
@@ -385,8 +395,8 @@ class SQLAuditRepository(BaseAuditRepository):
             action_record=action_record,
             error_message=model.error_message,
             task_id=model.task_id or "",
-            tool_name=model.tool_name or "",
-            arguments=model.arguments,
+            tool_name=model.tool_name or (action.original_tool_name if action and hasattr(action, 'original_tool_name') and action.original_tool_name else (action.normalized_name if action else "")),
+            arguments=model.arguments if model.arguments is not None else (action.arguments if action and hasattr(action, 'arguments') else {}),
             execution_result=model.execution_result
         )
 
@@ -404,11 +414,14 @@ class SQLSessionRepository(BaseSessionRepository):
         self._session = session
 
     def add(self, session_data: dict) -> None:
+        created_at = session_data["created_at"]
+        if hasattr(created_at, "tzinfo") and created_at.tzinfo is not None:
+            created_at = created_at.astimezone(timezone.utc).replace(tzinfo=None)
         model = AgentSessionModel(
             session_id=session_data["session_id"],
             task_id=session_data["task_id"],
             agent_id=session_data.get("agent_id", "default"),
-            created_at=session_data["created_at"],
+            created_at=created_at,
             status=session_data["status"],
         )
         self._session.merge(model)

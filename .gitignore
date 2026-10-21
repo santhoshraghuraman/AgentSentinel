@@ -12,24 +12,77 @@ ui/node_modules/
 ui/dist/
 ui/.env.local
 
-# Runtime & Sandbox Logs
-logs/*
+# Runtime & Local Logs
+logs/**
 !logs/.gitkeep
-sandbox/*
+sandbox/**
 !sandbox/.gitkeep
+*.log
+scratch/
 
-# IDEs and Tools
+# Local run outputs & test traces
+tool_calls.txt
+user_inputs.txt
+last_user_inputs.txt
+file_history.txt
+modified_files.txt
+all_controls.txt
+current_tests.txt
+out.txt
+pytest_results*.txt
+results.json
+verify_sample.txt
+verify_ollama_results.txt
+verify_phase_3_6_results.txt
+
+# Local IDE and Agent Configs
 .vscode/
 .idea/
+.agents/
 
 # Exclude temp testing artifacts but preserve standard datasets
 test-results/
 ui/playwright-report/
 
 # Large research/generated artifacts excluded from Git (kept on disk)
-# syfi_coding_trace.jsonl.gz: 96 MB observational research trace (runtime optional)
-# syfi_coding_trace.duckdb: 153 MB generated local analysis database
-# reports/final_live_chrome/trace.zip: 125 MB generated Playwright browser trace
 datasets/TraceLab/syfi_coding_trace.jsonl.gz
 datasets/TraceLab/syfi_coding_trace.duckdb
 reports/final_live_chrome/trace.zip
+
+# Academic report binaries, videos, and reference literature
+*.docx
+*.pdf
+*.mp4
+15 Research Papers/
+UI Dashboard Templates/
+Gravitas/
+skills-lock.json
+
+# Loose duplicate root images
+01-trajectories.png
+02-agents-sessions.png
+03-policies.png
+04-tasks-auth-contexts.png
+
+# Root scratch & diagnostic helper scripts
+build_full_dissertation.py
+cleanup_policy.py
+exhaustive_runner.py
+extract_logo*.py
+find_fake_data.py
+fix_local_service.py
+fix_tests*.py
+generate_events.py
+inspect_data.py
+manual_validation.py
+measure_wrapper.py
+prep_validation.py
+run_api_tests.py
+run_backend_audit.py
+run_live_validation.py
+run_local_acceptance.py
+test_allow_isolated.py
+update_ui.js
+verify_*.py
+ollama_results.txt
+template_paragraphs.txt

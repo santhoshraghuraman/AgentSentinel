@@ -9,3 +9,5 @@ joblib==1.6.0
 pydantic==2.12.5
 pytest==9.1.1
 httpx==0.28.1
+pypdf>=6.0.0
+python-multipart>=0.0.32

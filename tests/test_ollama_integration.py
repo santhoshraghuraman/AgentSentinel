@@ -210,21 +210,37 @@ def test_multi_step_agent_flow_with_allow(tmp_path):
     assert traces[2]["type"] == "agent_response"
 
 def test_block_path(tmp_path):
-    """13. BLOCK path."""
+    """13. BLOCK path via real M6/M7/M8 pipeline and zero-invocation verification."""
+    callable_calls = 0
+    def spy_write(file_path: str, content: str) -> str:
+        nonlocal callable_calls
+        callable_calls += 1
+        return "written"
+
     provider = MockProvider([
         AgentMessage(role="assistant", tool_calls=[
-            {"id": "c1", "name": "write_file", "arguments": {"file_path": "/etc/passwd", "content": "hack"}}
+            {"id": "c1", "name": "write_file", "arguments": {"file_path": "output.txt", "content": "hack"}}
         ]),
         AgentMessage(role="assistant", content="I cannot do that.")
     ])
     
     registry, service = _setup_test_env(tmp_path)
-    # Give it a block policy or rely on the mock returning a SentinelBlockException manually?
-    # M8 RuntimeInterceptor uses M7. If no policies, it allows.
-    # To test BLOCK, we need the M8 adapter to block it, or M7 to block it.
-    # Let's mock the service execution instead to raise SentinelBlockException.
-    from src.agentsentinel.integrations.callable_integration import SentinelBlockException
-    service.execute_tool = MagicMock(side_effect=SentinelBlockException("blocked by AgentSentinel"))
+    registry.tools["write_file"].callable_func = spy_write
+
+    # Configure real M7 BLOCK policy for file system write
+    from src.agentsentinel.governance.models import GovernancePolicy, GovernanceDecision, PolicyCondition
+    from src.agentsentinel.models.normalized import ActionCategory
+    service._policy_repo.get_all.return_value = [
+        GovernancePolicy(
+            policy_id="pol_block_delete",
+            decision=GovernanceDecision.BLOCK,
+            priority=30,
+            description="Block sensitive writes",
+            condition=PolicyCondition(
+                categories=frozenset([ActionCategory.FILE_SYSTEM_WRITE]),
+            )
+        )
+    ]
     
     runner = AgentRunner(
         provider=provider,
@@ -242,6 +258,8 @@ def test_block_path(tmp_path):
     assert traces[1]["type"] == "execution_result"
     assert traces[1]["state"] == "BLOCKED"
     assert "blocked by AgentSentinel" in traces[1]["output"]
+    # Verify zero invocations of the protected callable
+    assert callable_calls == 0
 
 def test_execution_failure_path(tmp_path):
     """14. execution failure path."""

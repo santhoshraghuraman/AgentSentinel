@@ -7,7 +7,7 @@ fabricating timestamps.
 """
 
 from typing import Iterator, Tuple, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 import logging
 
 from src.agentsentinel.models.normalized import NormalizedTrajectory, NormalizedAction
@@ -65,6 +65,8 @@ class BehavioralSequence:
                     # python fromisoformat handles standard ISO 8601 strings.
                     # Handle trailing Z for timezone awareness robustness.
                     curr_time = datetime.fromisoformat(curr_time_str.replace("Z", "+00:00"))
+                    if curr_time.tzinfo is None:
+                        curr_time = curr_time.replace(tzinfo=timezone.utc)
                 except ValueError:
                     logger.warning(f"Malformed timestamp in event {event.id}: {curr_time_str}")
                     curr_time = None

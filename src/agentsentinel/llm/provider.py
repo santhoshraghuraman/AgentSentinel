@@ -108,11 +108,21 @@ class DevelopmentProvider(LLMProvider):
                 tool_calls=[{"id": "call_fail", "name": "read_file", "arguments": {"file_path": "non_existent_file.txt"}}]
             )
 
+        # Scenario 5: Document summarization (Conversational, zero tools)
+        if ("summarize" in user_msg or "summary" in user_msg or "untrusted attached document" in user_msg) and not any(k in user_msg for k in ["read_file", "read the", "write to", "write_file", "/etc/passwd", "delete", "attack"]):
+            if self.call_count == 1:
+                return AgentMessage(
+                    role="assistant",
+                    content="Document Summary: The attached PDF was successfully analyzed under zero-trust boundary. Extracted text was processed as untrusted input data without triggering external tool actions."
+                )
+
         # Scenario 3: Malicious attack / unauthorized write (BLOCK)
         if ("write" in user_msg or "passwd" in user_msg or "delete" in user_msg or "exfiltrate" in user_msg or "attack" in user_msg) and self.call_count == 1:
+            file_path = "output.txt" if "output.txt" in user_msg else "/etc/passwd"
+            content = "UNAUTHORIZED_OVERRIDE" if "unauthorized_override" in user_msg else "malicious_override"
             return AgentMessage(
                 role="assistant",
-                tool_calls=[{"id": "call_block", "name": "write_file", "arguments": {"file_path": "/etc/passwd", "content": "malicious_override"}}]
+                tool_calls=[{"id": "call_block", "name": "write_file", "arguments": {"file_path": file_path, "content": content}}]
             )
 
         # Scenario 2: Calculate math (ALERT / ALLOW)
@@ -134,9 +144,13 @@ class DevelopmentProvider(LLMProvider):
 import requests
 
 class OllamaProvider(LLMProvider):
-    def __init__(self, host: str = "http://localhost:11434", model: str = "qwen3:4b"):
+    def __init__(self, host: str = "http://localhost:11434", model: str = "qwen3:4b", timeout: Optional[float] = None):
         self.host = host.rstrip("/")
         self.model = model
+        if timeout is not None:
+            self.timeout = float(timeout)
+        else:
+            self.timeout = float(os.environ.get("OLLAMA_TIMEOUT", "120.0"))
 
     def check_availability(self) -> str:
         """Returns 'OLLAMA_UNAVAILABLE', 'MODEL_MISSING', or 'MODEL_AVAILABLE'"""
@@ -174,15 +188,8 @@ class OllamaProvider(LLMProvider):
 
         # Detect whether this is a follow-up call (after tool results)
         # vs. an initial call (where the model needs to generate tool calls).
-        # Follow-up calls only need text output, so we can disable thinking
-        # and use a tighter output bound.
+        # Follow-up calls only need text output, so we can use a tighter output bound.
         has_tool_results = any(m.role == "tool" for m in messages)
-
-        if has_tool_results:
-            formatted_messages.append({
-                "role": "assistant",
-                "content": "<think>\n</think>\n"
-            })
 
         payload: Dict[str, Any] = {
             "model": self.model,
@@ -192,16 +199,16 @@ class OllamaProvider(LLMProvider):
         if formatted_tools and not has_tool_results:
             payload["tools"] = formatted_tools
 
+        # Bounded generation strategy: default to 768 tokens (configurable via OLLAMA_NUM_PREDICT)
+        # to ensure reasoning and response complete well within socket read timeout.
+        num_predict = int(os.environ.get("OLLAMA_NUM_PREDICT", "768"))
         if has_tool_results:
-            # Follow-up: text-only response after tool execution.
-            payload["options"] = {"num_predict": 256, "temperature": 0.0}
-        else:
-            # Initial call: model needs thinking to decide on tool calls.
-            # Bound total output to force a fast deterministic tool call.
-            payload["options"] = {"num_predict": 1024, "temperature": 0.0}
+            num_predict = min(num_predict, 512)
+
+        payload["options"] = {"num_predict": num_predict, "temperature": 0.0}
 
         try:
-            resp = requests.post(f"{self.host}/api/chat", json=payload, timeout=120.0)
+            resp = requests.post(f"{self.host}/api/chat", json=payload, timeout=self.timeout)
             resp.raise_for_status()
             data = resp.json()
         except requests.exceptions.RequestException as e:
@@ -219,9 +226,19 @@ class OllamaProvider(LLMProvider):
                     "arguments": func.get("arguments", {})
                 })
 
+        content = msg_data.get("content", "").strip()
+        # Clean up any leaking thinking tags in content
+        if "</think>" in content:
+            content = content.split("</think>")[-1].strip()
+
+        # If model exhausted token budget without completing response or tool call,
+        # fail explicitly instead of fabricating an answer from internal thinking monologue
+        if not content and not tool_calls:
+            raise RuntimeError("Model generation failed: Model exhausted token budget without completing response or tool call.")
+
         return AgentMessage(
             role="assistant",
-            content=msg_data.get("content", ""),
+            content=content,
             tool_calls=tool_calls
         )
 

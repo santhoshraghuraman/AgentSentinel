@@ -19,7 +19,7 @@ Key design principles:
 
 import threading
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
 
@@ -118,7 +118,7 @@ class RuntimeEvent:
         self.normalized_event = normalized_event
         self.execution_state = execution_state
         self.interception_id = interception_id
-        self.timestamp = timestamp or datetime.utcnow()
+        self.timestamp = timestamp or datetime.now(timezone.utc)
 
 
 # ──────────────────────────────────────────────────────────

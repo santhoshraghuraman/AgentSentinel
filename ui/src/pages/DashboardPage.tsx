@@ -17,8 +17,13 @@ import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card'
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { cn } from '../utils/cn';
-
+import { formatTime } from '../utils/datetime';
 import { GovernanceTimelineChart } from '../components/charts/GovernanceTimelineChart';
+import { DecisionDistributionChart } from '../components/charts/DecisionDistributionChart';
+import { ToolCategoryDistributionChart } from '../components/charts/ToolCategoryDistributionChart';
+import { RiskHistogramChart } from '../components/charts/RiskHistogramChart';
+import { StageLatencyChart } from '../components/charts/StageLatencyChart';
+import { SentinelCommandCentre } from '../components/viz/SentinelCommandCentre';
 
 const STAGES = [
   { id: 'M2', name: 'Semantic Normalization' },
@@ -30,10 +35,18 @@ const STAGES = [
 export function DashboardPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [timelineFilter, setTimelineFilter] = useState<'15m' | '1h' | '24h' | 'Live'>('Live');
+  const [temporalScope, setTemporalScope] = useState<'all' | '24h' | '1h'>('all');
+
+  const scopeSince = useMemo(() => {
+    const now = Date.now();
+    if (temporalScope === '1h') return now - 60 * 60 * 1000;
+    if (temporalScope === '24h') return now - 24 * 60 * 60 * 1000;
+    return undefined; // 'all'
+  }, [temporalScope]);
 
   const { data: metrics, isLoading: isMetricsLoading, error: metricsError, refetch: refetchMetrics, isRefetching } = useQuery<any>({
-    queryKey: ['metrics'],
-    queryFn: () => telemetryService.getMetrics(),
+    queryKey: ['metrics', scopeSince],
+    queryFn: () => telemetryService.getMetrics(scopeSince),
     refetchInterval: 5000,
   });
 
@@ -85,7 +98,7 @@ export function DashboardPage() {
   };
 
   const filteredEvents = useMemo(() => {
-    if (!auditEvents) return [];
+    if (!auditEvents || !Array.isArray(auditEvents)) return [];
     if (!searchTerm.trim()) return auditEvents.slice(0, 8);
     const q = searchTerm.toLowerCase();
     return auditEvents.filter(e => 
@@ -98,7 +111,7 @@ export function DashboardPage() {
 
   // Aggregate event data for real timeline graph summary stats
   const timelineData = useMemo(() => {
-    if (!timeseriesData || timeseriesData.length === 0) return { allow: 0, alert: 0, block: 0, total: 0 };
+    if (!timeseriesData || !Array.isArray(timeseriesData) || timeseriesData.length === 0) return { allow: 0, alert: 0, block: 0, total: 0 };
     const sums = timeseriesData.reduce((acc, curr) => ({
       allow: acc.allow + curr.allow,
       alert: acc.alert + curr.alert,
@@ -270,6 +283,16 @@ export function DashboardPage() {
             </Card>
           </div>
 
+          {/* Sentinel Core Security Command Centre (Phase 5C / 6C) */}
+          <SentinelCommandCentre
+            decisions={metrics?.decisions}
+            totalInterceptions={metrics?.total_interceptions}
+            auditEvents={auditEvents}
+            isLoading={isMetricsLoading && !metrics}
+            temporalScope={temporalScope}
+            onTemporalScopeChange={setTemporalScope}
+          />
+
           {/* Middle Row: Runtime Activity Chart & Engine Health Matrix */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left 2 Cols: Runtime Governance Activity */}
@@ -381,6 +404,27 @@ export function DashboardPage() {
             </Card>
           </div>
 
+          {/* Operational Telemetry & Statistical Visualizations (Phase 5A) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <DecisionDistributionChart
+              decisions={metrics?.decisions}
+              isLoading={isMetricsLoading && !metrics}
+            />
+            <ToolCategoryDistributionChart
+              actionsByCategory={metrics?.actions_by_category}
+              auditEvents={auditEvents}
+              isLoading={(isMetricsLoading || isAuditLoading) && !metrics && !auditEvents}
+            />
+            <RiskHistogramChart
+              auditEvents={auditEvents}
+              isLoading={isAuditLoading && !auditEvents}
+            />
+            <StageLatencyChart
+              auditEvents={auditEvents}
+              isLoading={isAuditLoading && !auditEvents}
+            />
+          </div>
+
           {/* Bottom Row: Recent Runtime Interceptions Table */}
           <Card className="border-slate-200 shadow-xs bg-white overflow-hidden">
             <CardHeader className="py-4 px-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -439,7 +483,7 @@ export function DashboardPage() {
                             )}
                           >
                             <td className="py-3 px-6 font-mono text-[11px] text-slate-500 whitespace-nowrap">
-                              {new Date(event.timestamp).toLocaleTimeString()}
+                              {formatTime(event.timestamp)}
                             </td>
                             <td className="py-3 px-4 font-mono font-medium text-slate-800 whitespace-nowrap">
                               <span className="text-[11px] truncate max-w-[140px] inline-block" title={event.session_id}>

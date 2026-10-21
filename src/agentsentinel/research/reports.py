@@ -55,7 +55,7 @@ def generate_compliance_summary(
 
     return {
         "report_id": f"RPT-{int(datetime.now(timezone.utc).timestamp())}",
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "platform": "AgentSentinel Enterprise AI Governance",
         "posture": {
             "total_interceptions": total_interceptions,

@@ -1,0 +1,83 @@
+{
+  "timestamp": "2026-10-19T10:16:45.201Z",
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "walkthrough_session_id": "walkthrough-1792404978240",
+  "screens_visited_count": 14,
+  "screens_visited": [
+    {
+      "route": "/",
+      "name": "Overview Dashboard"
+    },
+    {
+      "route": "/live",
+      "name": "Live Monitor"
+    },
+    {
+      "route": "/playground",
+      "name": "Runtime Playground"
+    },
+    {
+      "route": "/decision-explorer",
+      "name": "Decision Explorer"
+    },
+    {
+      "route": "/trajectories",
+      "name": "Security Trajectories"
+    },
+    {
+      "route": "/agents",
+      "name": "Agents"
+    },
+    {
+      "route": "/policies",
+      "name": "Policies"
+    },
+    {
+      "route": "/tasks",
+      "name": "Tasks"
+    },
+    {
+      "route": "/audit",
+      "name": "Audit Logs"
+    },
+    {
+      "route": "/datasets",
+      "name": "Datasets"
+    },
+    {
+      "route": "/evaluation",
+      "name": "Evaluation"
+    },
+    {
+      "route": "/reports",
+      "name": "Reports"
+    },
+    {
+      "route": "/settings",
+      "name": "Settings"
+    },
+    {
+      "route": "/system/diagnostics",
+      "name": "Diagnostics"
+    }
+  ],
+  "functional_checks": {
+    "kpiCardsVisible": true,
+    "3D_2D_Switching": true,
+    "allowOutcomeRendered": true,
+    "blockOutcomeRendered": true,
+    "zeroInvocationsConfirmed": true,
+    "autonomousAgentRun": "TAB_NOT_VISIBLE",
+    "decisionExplorerEventSelected": true
+  },
+  "console_errors_count": 0,
+  "console_errors": [],
+  "failed_requests_count": 0,
+  "failed_requests": [],
+  "screenshots_directory_repo": "c:\\Users\\91959\\Documents\\Agent Sentinel\\AgentSentinel\\ui\\reports\\walkthrough",
+  "screenshots_directory_artifact": "C:\\Users\\91959\\.gemini\\antigravity-ide\\brain\\85f09cb5-97c0-4826-bd7c-f9c60a002b99\\screenshots\\walkthrough",
+  "verdict": "PASS"
+}

@@ -37,7 +37,7 @@ from typing import Any, Optional
 
 from src.agentsentinel.models.normalized import NormalizedAction
 from src.agentsentinel.governance.models import GovernanceDecision
-from src.agentsentinel.runtime.state import ExecutionState, ValidatedInvocation
+from src.agentsentinel.runtime.state import ExecutionState, RuntimeSession, ValidatedInvocation
 from src.agentsentinel.runtime.interceptor import InterceptionResult, RuntimeInterceptor
 
 
@@ -76,7 +76,7 @@ class BaseFrameworkAdapter(abc.ABC):
 
     def execute_tool_call(
         self,
-        session_id: str,
+        session: RuntimeSession,
         invocation: ValidatedInvocation,
     ) -> Any:
         """
@@ -89,10 +89,16 @@ class BaseFrameworkAdapter(abc.ABC):
         5. If ALLOW/ALERT → execute the EXACT ValidatedInvocation once.
         6. Mark execution state in the session.
 
+        Args:
+            session: The RuntimeSession this tool call belongs to.
+            invocation: The immutable ValidatedInvocation to govern and execute.
+
         Returns:
             Tool execution result for ALLOW/ALERT.
             Framework-specific error for BLOCK/normalization failure.
         """
+        session_id = session.session_id if hasattr(session, "session_id") else str(session)
+
         # Step 1: Normalize
         action = self.normalize(invocation)
 
@@ -115,7 +121,7 @@ class BaseFrameworkAdapter(abc.ABC):
             return self.handle_block(result)
 
         # Step 2: Intercept through M3→M4→M5→M6→M7
-        result, _ = self._interceptor.intercept(session_id, action)
+        result, _ = self._interceptor.intercept(session, action)
 
         # Step 3: Execution gate
         if result.decision == GovernanceDecision.BLOCK:
@@ -128,7 +134,7 @@ class BaseFrameworkAdapter(abc.ABC):
             # Execution failure: mark as EXECUTION_FAILED
             # Original governance decision remains unchanged
             self._interceptor.mark_execution_failed(
-                session_id, result.interception_id, str(e),
+                session, result.interception_id, str(e),
             )
             logger.error(
                 "Tool execution failed for interception %s: %s",
@@ -137,6 +143,6 @@ class BaseFrameworkAdapter(abc.ABC):
             raise
 
         # Step 5: Mark as EXECUTED
-        self._interceptor.mark_executed(session_id, result.interception_id)
+        self._interceptor.mark_executed(session, result.interception_id)
 
         return tool_result

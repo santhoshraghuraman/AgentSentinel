@@ -12,6 +12,7 @@ import {
   TrendingUp
 } from 'lucide-react';
 import { cn } from '../utils/cn';
+import { formatDateTime } from '../utils/datetime';
 
 export function EvaluationPage() {
   const queryClient = useQueryClient();
@@ -255,7 +256,7 @@ export function EvaluationPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-500 font-bold uppercase tracking-wider">Trained Timestamp</span>
-                    <span className="text-slate-700">{new Date(metrics.trained_at).toLocaleString()}</span>
+                    <span className="text-slate-700">{formatDateTime(metrics.trained_at)}</span>
                   </div>
                 </CardContent>
               </Card>

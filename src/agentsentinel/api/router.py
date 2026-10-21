@@ -6,8 +6,8 @@ No governance logic exists here. All governance is delegated to
 the Service Layer and M8.
 """
 
-from typing import List
-from fastapi import APIRouter, Depends, HTTPException
+from typing import List, Optional
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 
 from src.agentsentinel.api.schemas import (
     CreatePolicyRequest,
@@ -61,7 +61,12 @@ def intercept_tool_call(
 # ──────────────────────────────────────────────────────────
 
 from typing import List, Optional
-from datetime import datetime
+from datetime import datetime, timezone
+
+def _parse_since_param(since: Optional[float]) -> Optional[datetime]:
+    if since is None:
+        return None
+    return datetime.fromtimestamp(since / 1000.0, tz=timezone.utc).replace(tzinfo=None)
 
 @router.get("/audit", response_model=List[SafeAuditEventResponse])
 def get_all_audit_logs(
@@ -69,7 +74,7 @@ def get_all_audit_logs(
     audit_service: AuditService = Depends(get_audit_service),
 ) -> List[SafeAuditEventResponse]:
     """Retrieve all safe audit events in descending order."""
-    since_dt = datetime.fromtimestamp(since / 1000.0) if since else None
+    since_dt = _parse_since_param(since)
     return audit_service.get_all(since=since_dt)[::-1]
 
 @router.get("/audit/{session_id}", response_model=List[SafeAuditEventResponse])
@@ -168,19 +173,61 @@ def list_sessions(
 
 
 # ──────────────────────────────────────────────────────────
-# Agent Runner
+# Agent Runner & Document Ingestion (Phase 6B)
 # ──────────────────────────────────────────────────────────
 from src.agentsentinel.llm.agent import AgentRunner
 from src.agentsentinel.llm.provider import get_llm_provider
 from src.agentsentinel.llm.tools import ToolRegistry
 from src.agentsentinel.integrations.service import LocalSentinelService
-from src.agentsentinel.api.dependencies import get_task_repo, get_policy_repo, get_audit_repo
-from src.agentsentinel.api.dependencies import _interceptor
+from src.agentsentinel.api.dependencies import (
+    get_task_repo, 
+    get_policy_repo, 
+    get_audit_repo,
+    get_document_service,
+    _interceptor
+)
+from src.agentsentinel.services.document_service import DocumentService, DocumentProcessingError
+from pydantic import BaseModel
+import logging
+
+logger = logging.getLogger(__name__)
 
 class AgentRunRequest(BaseModel):
     session_id: str
     task_id: str
     prompt: str
+    document_context: Optional[str] = None
+    document_filename: Optional[str] = None
+
+class DocumentUploadResponse(BaseModel):
+    filename: str
+    file_size: int
+    page_count: int
+    extracted_text: str
+    character_count: int
+    preview: str
+    warning: Optional[str] = None
+    sandbox_path: Optional[str] = None
+
+@router.post("/documents/upload", response_model=DocumentUploadResponse)
+async def upload_document(
+    file: UploadFile = File(...),
+    document_service: DocumentService = Depends(get_document_service)
+) -> DocumentUploadResponse:
+    """
+    Validates and extracts text from an uploaded PDF document safely.
+    Enforces size limits (10MB), %PDF- header, corruption checks,
+    and writes securely into ./sandbox/documents.
+    """
+    try:
+        content = await file.read()
+        res = document_service.validate_and_extract_pdf(content, file.filename or "document.pdf")
+        return DocumentUploadResponse(**res)
+    except DocumentProcessingError as e:
+        raise HTTPException(status_code=e.status_code, detail=e.message)
+    except Exception as e:
+        logger.error(f"Unexpected error processing PDF upload: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal document extraction error: {e}")
 
 @router.post("/agent/run")
 def run_agent(
@@ -214,7 +261,11 @@ def run_agent(
     )
     
     try:
-        result = runner.run(request.prompt)
+        result = runner.run(
+            request.prompt,
+            document_context=request.document_context,
+            document_filename=request.document_filename
+        )
         session_service.update_status(request.session_id, "completed")
         return result
     except Exception as e:
@@ -231,7 +282,7 @@ def get_metrics(
     since: Optional[float] = None,
     audit_service: AuditService = Depends(get_audit_service)
 ):
-    since_dt = datetime.fromtimestamp(since / 1000.0) if since else None
+    since_dt = _parse_since_param(since)
     return audit_service.get_metrics(since=since_dt)
 
 @router.get("/metrics/timeseries")
@@ -240,7 +291,7 @@ def get_timeseries(
     bucket_size: int = 60,
     audit_service: AuditService = Depends(get_audit_service)
 ):
-    since_dt = datetime.fromtimestamp(since / 1000.0) if since else None
+    since_dt = _parse_since_param(since)
     return audit_service.get_timeseries(since=since_dt, bucket_seconds=bucket_size)
 
 @router.get("/health", response_model=HealthResponse)

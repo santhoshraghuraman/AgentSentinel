@@ -11,6 +11,8 @@ import type {
   HealthResponse,
   SafeSessionResponse,
   SystemDiagnosticsResponse,
+  DocumentUploadResponse,
+  AgentRunRequest,
 } from './types';
 
 export const systemService = {
@@ -71,8 +73,21 @@ export const policyService = {
 };
 
 export const agentService = {
-  runAgent: async (request: any): Promise<any> => {
+  runAgent: async (request: AgentRunRequest | any): Promise<any> => {
     const { data } = await apiClient.post<any>('/agent/run', request);
+    return data;
+  },
+};
+
+export const documentService = {
+  uploadPdf: async (file: File): Promise<DocumentUploadResponse> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    const { data } = await apiClient.post<DocumentUploadResponse>('/documents/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return data;
   },
 };

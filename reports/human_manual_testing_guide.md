@@ -114,7 +114,7 @@ Go to the **Runtime Playground**, ensure the **Live Agent Execution (User Task)*
 ## 6. Final Verification
 
 ### Audit Logs (`/audit`)
-1. **What this screen is for:** Immutable cryptographic ledger of all interceptions.
+1. **What this screen is for:** Durable SQLite audit ledger with interception-ID correlation and application-level append behavior.
 2. **What you should do:** After running the 4 Playground scenarios, navigate to `/audit`.
 3. **Expected Output:** You should see 4 new rows at the top of the table reflecting your ALLOW, ALERT, BLOCK, and FAULT tests.
 4. **Proof:** Proves that M10 (Persistence) successfully committed the M8 execution results to the SQLite database via `/api/v1/audit`. 

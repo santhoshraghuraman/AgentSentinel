@@ -33,7 +33,7 @@ import dataclasses
 import logging
 import uuid
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List, Optional, Sequence, Tuple
 
 from src.agentsentinel.models.normalized import (
@@ -153,7 +153,7 @@ class RuntimeInterceptor:
             # Create a RuntimeEvent for the current ATTEMPTED action
             normalized_event = NormalizedEvent(
                 id=f"runtime_{interception_id}",
-                timestamp=datetime.utcnow().isoformat(),
+                timestamp=datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
                 role=EventRole.TOOL_CALL,
                 content=None,
                 normalized_actions=[action],
@@ -202,12 +202,15 @@ class RuntimeInterceptor:
                     interception_id=result.interception_id,
                     session_id=result.session_id,
                     sequence_number=result.sequence_number,
-                    timestamp=datetime.utcnow(),
+                    timestamp=datetime.now(timezone.utc),
                     action=result.action,
                     decision=result.decision,
                     action_record=result.action_record,
                     execution_state=ExecutionState.BLOCKED,
                     error_message=result.error_message,
+                    task_id=session.task_context.task_id if session.task_context else "",
+                    tool_name=action.original_tool_name or action.normalized_name if action else "",
+                    arguments=action.arguments if action else {},
                 )
                 return result, audit
 
@@ -220,12 +223,15 @@ class RuntimeInterceptor:
                 interception_id=result.interception_id,
                 session_id=result.session_id,
                 sequence_number=result.sequence_number,
-                timestamp=datetime.utcnow(),
+                timestamp=datetime.now(timezone.utc),
                 action=result.action,
                 decision=result.decision,
                 action_record=result.action_record,
                 execution_state=runtime_event.execution_state,
                 error_message=result.error_message,
+                task_id=session.task_context.task_id if session.task_context else "",
+                tool_name=action.original_tool_name or action.normalized_name if action else "",
+                arguments=action.arguments if action else {},
             )
             return result, audit
 

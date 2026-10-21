@@ -6,10 +6,13 @@ Provides request-scoped database sessions and service instances
 while keeping the M8 RuntimeInterceptor as a global singleton.
 """
 
+import os
 from fastapi import Depends
 from sqlalchemy.orm import Session
 
 from src.agentsentinel.db.database import get_db, Base, engine
+from src.agentsentinel.risk.ml_model import MLModelLoader
+from src.agentsentinel.risk.engine import BehavioralRiskEngine
 from src.agentsentinel.runtime.interceptor import RuntimeInterceptor
 from src.agentsentinel.repositories.sql import (
     SQLAuditRepository,
@@ -32,9 +35,20 @@ Base.metadata.create_all(bind=engine)
 # Global Singletons
 # ──────────────────────────────────────────────────────────
 
+# ML model: load once at startup from the canonical research artifact.
+# MLModelLoader enters a degraded state (is_loaded=False) if the artifact
+# is missing or incompatible — the risk engine continues with heuristic
+# dimensions only and does NOT fail open.
+_ARTIFACT_PATH = os.environ.get(
+    "AGENTSENTINEL_MODEL_PATH",
+    "research/artifacts/risk_model.joblib",
+)
+_ml_loader = MLModelLoader(_ARTIFACT_PATH)
+_risk_engine = BehavioralRiskEngine(ml_model=_ml_loader)
+
 # The M8 Engine is inherently stateful (maintains monotonic counters)
-# and MUST be a global singleton.
-_interceptor = RuntimeInterceptor()
+# and MUST be a global singleton.  Receives the ML-enabled risk engine.
+_interceptor = RuntimeInterceptor(risk_engine=_risk_engine)
 
 
 # ──────────────────────────────────────────────────────────
@@ -91,9 +105,13 @@ def get_task_service(
     return TaskService(task_repo=task_repo)
 
 from src.agentsentinel.services.session_service import SessionService
+from src.agentsentinel.services.document_service import DocumentService
 
 def get_session_service(
     session_repo: SQLSessionRepository = Depends(get_session_repo),
     audit_repo: SQLAuditRepository = Depends(get_audit_repo)
 ) -> SessionService:
     return SessionService(session_repo=session_repo, audit_repo=audit_repo)
+
+def get_document_service() -> DocumentService:
+    return DocumentService(sandbox_dir="./sandbox")

@@ -5,7 +5,9 @@ Read-only access to M8 audit events through the repository layer.
 This service does NOT mutate authoritative M8 audit semantics.
 """
 
-from typing import List
+from typing import List, Optional
+from datetime import datetime, timezone
+import math
 
 from src.agentsentinel.repositories.base import BaseAuditRepository
 from src.agentsentinel.api.schemas import (
@@ -52,16 +54,17 @@ class AuditService:
         if not events and not since:
             return []
 
-        import math
-        from datetime import datetime
-
         buckets = {}
         for ts, decision in events:
-            # Use timestamp math for reliable bucketing regardless of naive/aware
-            ts_epoch = ts.timestamp()
+            # Normalize to UTC timestamp for reliable bucketing regardless of naive/aware
+            if ts.tzinfo is None:
+                ts_utc = ts.replace(tzinfo=timezone.utc)
+            else:
+                ts_utc = ts.astimezone(timezone.utc)
+            ts_epoch = ts_utc.timestamp()
             bucket_epoch = math.floor(ts_epoch / bucket_seconds) * bucket_seconds
-            bucket_dt = datetime.fromtimestamp(bucket_epoch)
-            bucket_str = bucket_dt.isoformat()
+            bucket_dt = datetime.fromtimestamp(bucket_epoch, tz=timezone.utc)
+            bucket_str = bucket_dt.isoformat().replace("+00:00", "Z")
             
             if bucket_str not in buckets:
                 buckets[bucket_str] = {"time": bucket_str, "allow": 0, "alert": 0, "block": 0}
@@ -71,14 +74,18 @@ class AuditService:
                 buckets[bucket_str][d] += 1
 
         if since:
-            start_ts = since.timestamp()
+            if since.tzinfo is None:
+                since_utc = since.replace(tzinfo=timezone.utc)
+            else:
+                since_utc = since.astimezone(timezone.utc)
+            start_ts = since_utc.timestamp()
         elif buckets:
-            start_ts = min(datetime.fromisoformat(b).timestamp() for b in buckets.keys())
+            start_ts = min(datetime.fromisoformat(b.replace("Z", "+00:00")).timestamp() for b in buckets.keys())
         else:
             return []
 
-        # End time should be now to show the full selected window up to present
-        end_ts = datetime.utcnow().timestamp()
+        # End time should be current UTC time to show the full selected window up to present
+        end_ts = datetime.now(timezone.utc).timestamp()
         
         start_epoch = math.floor(start_ts / bucket_seconds) * bucket_seconds
         end_epoch = math.floor(end_ts / bucket_seconds) * bucket_seconds
@@ -86,8 +93,8 @@ class AuditService:
         current_epoch = start_epoch
         result = []
         while current_epoch <= end_epoch:
-            bucket_dt = datetime.fromtimestamp(current_epoch)
-            bucket_str = bucket_dt.isoformat()
+            bucket_dt = datetime.fromtimestamp(current_epoch, tz=timezone.utc)
+            bucket_str = bucket_dt.isoformat().replace("+00:00", "Z")
             if bucket_str in buckets:
                 result.append(buckets[bucket_str])
             else:
@@ -158,14 +165,29 @@ class AuditService:
                 reasons=reasons,
             )
 
+        ts = event.timestamp
+        if isinstance(ts, datetime):
+            if ts.tzinfo is None:
+                ts_str = ts.replace(tzinfo=timezone.utc).isoformat().replace("+00:00", "Z")
+            else:
+                ts_str = ts.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+        elif hasattr(ts, 'isoformat'):
+            ts_str = ts.isoformat()
+            if not ts_str.endswith('Z') and '+' not in ts_str:
+                ts_str += 'Z'
+        else:
+            ts_str = str(ts)
+            if ' ' in ts_str and 'Z' not in ts_str and '+' not in ts_str:
+                ts_str = ts_str.replace(' ', 'T') + 'Z'
+
         return SafeAuditEventResponse(
             interception_id=event.interception_id,
             session_id=event.session_id,
             task_id=event.task_id,
             sequence_number=event.sequence_number,
-            timestamp=event.timestamp.isoformat() if hasattr(event.timestamp, 'isoformat') else str(event.timestamp),
-            tool_name=event.tool_name,
-            arguments=event.arguments or {},
+            timestamp=ts_str,
+            tool_name=event.tool_name or (event.action.original_tool_name if event.action and hasattr(event.action, 'original_tool_name') and event.action.original_tool_name else (event.action.normalized_name if event.action else "")),
+            arguments=event.arguments if event.arguments is not None else (event.action.arguments if event.action and hasattr(event.action, 'arguments') else {}),
             decision=event.decision.value,
             execution_state=event.execution_state.value if hasattr(event.execution_state, 'value') else event.execution_state,
             execution_result=event.execution_result,
